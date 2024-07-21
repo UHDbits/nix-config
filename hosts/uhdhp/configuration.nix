@@ -22,7 +22,7 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../common
+    ../common/global
   ];
 
   nixpkgs = {
@@ -83,9 +83,10 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the Pantheon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.pantheon.enable = true;
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -120,11 +121,16 @@
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = ["wheel"];
+      # Temporary user packages
+      packages = [ pkgs.gitkraken pkgs.vscode ];
     };
   };
   
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Install GnuPG
+  programs.gnupg.agent.enable = true;
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

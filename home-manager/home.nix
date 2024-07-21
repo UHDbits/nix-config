@@ -58,6 +58,10 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
+  
+  # Enable the Brave Browser
+  programs.chromium.enable = true;
+  programs.chromium.package = pkgs.brave;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
