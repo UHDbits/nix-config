@@ -23,6 +23,7 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../common/global
+    ../common/optional/uefi/boot.nix
   ];
 
   nixpkgs = {
@@ -68,11 +69,6 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
-
-  # FIXME: Add the rest of your current configuration
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # TODO: Set your hostname
   networking.hostName = "uhdhp";
