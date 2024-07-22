@@ -7,7 +7,7 @@
       # Set settings for systemd-boot.
       systemd-boot = {
         # Enable systemd-boot.
-        enable = true;
+        # enable = true;
         # Disable the parameter editor.
         editor = false;
         # Lower the max NixOS configuration limit to 10.
@@ -25,7 +25,15 @@
     plymouth = {
       # Enable Plymouth.
       enable = true;
+      # Set Plymouth theme.
+      theme = "breeze";
     };
+
+    # Enable systemd initrd.
+    initrd.systemd.enable = true;
+
+    # Set kernel parameters.
+    kernelParams = ["quiet"];
 
     # Set the supported filesystems on boot.
     supportedFilesystems = [ "apfs" "bindfs" "btrfs" "ext4" "iso9600" "ntfs" "reiserfs" ];
