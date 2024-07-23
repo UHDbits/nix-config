@@ -1,4 +1,4 @@
-# Nix configuration file to enable hte zenpower sensor.
+# Nix configuration file to enable the zenpower sensor.
 { config,  ... }:
 {
   # Enables the zenpower sensor in lieu of the k10temp sensor on Zen CPUs https://git.exozy.me/a/zenpower3
