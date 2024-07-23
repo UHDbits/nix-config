@@ -24,6 +24,7 @@
     ./hardware-configuration.nix
     ../common/global
     ../common/optional/uefi/boot.nix
+    ../common/optional/uefi/secureboot.nix
   ];
 
   nixpkgs = {

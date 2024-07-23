@@ -7,11 +7,11 @@
       # Set settings for systemd-boot.
       systemd-boot = {
         # Enable systemd-boot.
-        # enable = true;
+        enable = true;
         # Disable the parameter editor.
         editor = false;
-        # Lower the max NixOS configuration limit to 10.
-        configurationLimit = 10;
+        # Lower the max NixOS configuration limit to 5.
+        configurationLimit = 5;
       };
     
       # Allow EFI variables to be modified.

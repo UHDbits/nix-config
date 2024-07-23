@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -24,7 +24,6 @@
   outputs = {
     self,
     nixpkgs,
-    lanzaboote,
     home-manager,
     ...
   } @ inputs: let
@@ -65,23 +64,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
-          ./hosts/uhdhp/configuration.nix
-
-          lanzaboote.nixosModules.lanzaboote
-
-          ({ pkgs, lib, ... }: {
-            environment.systemPackages = [
-              # For debugging and troubleshooting Secure Boot.
-              pkgs.sbctl
-            ];
-
-            boot.loader.systemd-boot.enable = lib.mkForce false;
-
-            boot.lanzaboote = {
-              enable = true;
-              pkiBundle = "/etc/secureboot";
-            };
-          })
+          ./hosts/uhdhp
         ];
       };
     };
