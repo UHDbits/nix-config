@@ -23,6 +23,9 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../common/global
+    ../common/optional/cpu/amd
+    ../common/optional/cpu/amd/pstate.nix
+    ../common/optional/cpu/amd/zenpower.nix
     ../common/optional/uefi/boot.nix
     ../common/optional/uefi/secureboot.nix
   ];
