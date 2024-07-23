@@ -70,10 +70,20 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
+  
+  # Encrypted partition
+  boot.initrd.luks.devices = {
+  	root = {
+  		device = "/dev/nvme0n1p3";
+  		preLVM = true;
+  	};
+  };
 
   # TODO: Set your hostname
   networking.hostName = "uhdhp";
   
+  hardware.amdgpu.initrd.enable = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
 

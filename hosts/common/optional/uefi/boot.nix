@@ -26,14 +26,14 @@
       # Enable Plymouth.
       enable = true;
       # Set Plymouth theme.
-      theme = "breeze";
+      theme = "bgrt";
     };
 
     # Enable systemd initrd.
     initrd.systemd.enable = true;
 
     # Set kernel parameters.
-    kernelParams = ["quiet"];
+    kernelParams = [ "quiet" "splash" ];
 
     # Set the supported filesystems on boot.
     supportedFilesystems = [ "apfs" "bindfs" "btrfs" "ext4" "iso9600" "ntfs" "reiserfs" ];
