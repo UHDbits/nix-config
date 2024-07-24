@@ -8,7 +8,7 @@
     # Set hardware clock to be stored in local time to ensure compatibility with Windows.
     hardwareClockInLocalTime = true;
   };
-  
+
   # Select internationalisation properties.
   i18n = {
     # Set the default locale of the system.

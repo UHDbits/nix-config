@@ -1,5 +1,4 @@
-{pkgs, ...}: {
-  imports = [
-    ./locale.nix
-  ];
+{ pkgs, ... }:
+{
+  imports = [ ./locale.nix ];
 }

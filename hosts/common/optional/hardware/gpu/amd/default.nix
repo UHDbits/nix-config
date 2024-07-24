@@ -1,6 +1,5 @@
 # Nix configuration file to set general settings for AMD GPUs.
 { lib, ... }:
-
 {
   services.xserver.videoDrivers = lib.mkDefault [ "modesetting" ];
 
