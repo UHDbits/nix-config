@@ -116,6 +116,7 @@
     pkgs.nixfmt-rfc-style
     pkgs.nixd
     pkgs.deadnix
+    pkgs.lm_sensors
   ];
 
   # Enable CUPS to print documents.
