@@ -1,4 +1,7 @@
 { pkgs, ... }:
 {
-  imports = [ ./locale.nix ];
+  imports = [
+    ./locale.nix
+    ./users/uhdbits/default.nix
+  ];
 }
