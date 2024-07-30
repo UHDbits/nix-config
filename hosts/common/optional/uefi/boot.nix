@@ -13,7 +13,7 @@
         # Lower the max NixOS configuration limit to 5.
         configurationLimit = 5;
       };
-    
+
       # Allow EFI variables to be modified.
       efi.canTouchEfiVariables = true;
 
@@ -33,10 +33,21 @@
     initrd.systemd.enable = true;
 
     # Set kernel parameters.
-    kernelParams = [ "quiet" "splash" ];
+    kernelParams = [
+      "quiet"
+      "splash"
+    ];
 
     # Set the supported filesystems on boot.
-    supportedFilesystems = [ "apfs" "bindfs" "btrfs" "ext4" "iso9600" "ntfs" "reiserfs" ];
+    supportedFilesystems = [
+      "apfs"
+      "bindfs"
+      "btrfs"
+      "ext4"
+      "iso9600"
+      "ntfs"
+      "reiserfs"
+    ];
 
     # Clear the "/tmp" folder on boot.
     tmp.cleanOnBoot = true;
