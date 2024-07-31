@@ -7,7 +7,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -18,6 +19,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ./chromium.nix
   ];
 
   nixpkgs = {
@@ -58,10 +60,6 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
-  
-  # Enable the Brave Browser
-  programs.chromium.enable = true;
-  programs.chromium.package = pkgs.brave;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

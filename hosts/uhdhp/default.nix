@@ -36,6 +36,8 @@
     ../common/optional/hardware/ssd
     ../common/optional/uefi/boot.nix
     ../common/optional/uefi/secureboot.nix
+
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   nixpkgs = {
@@ -119,6 +121,7 @@
     pkgs.nixd
     pkgs.deadnix
     pkgs.lm_sensors
+    pkgs.floorp
   ];
 
   # Enable CUPS to print documents.
@@ -133,6 +136,19 @@
   # Install the fish shell.
   programs.fish.enable = true;
 
+  # Set Chromium settings.
+  programs.chromium = {
+    enable = true;
+    # Set various policies.
+    extraOpts = {
+      # Disable stupid Brave features.
+      "BraveAIChatEnabled" = false;
+      "BraveRewardsDisabled" = true;
+      "BraveVPNDisabled" = 1;
+      "BraveWalletDisabled" = true;
+    };
+  };
+
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
   services.openssh = {
@@ -143,6 +159,15 @@
       # Opinionated: use keys only.
       # Remove if you want to SSH using passwords
       PasswordAuthentication = false;
+    };
+  };
+
+  home-manager = {
+    extraSpecialArgs = {
+      inherit inputs outputs pkgs;
+    };
+    users = {
+      uhdbits = import ../../home-manager/home.nix;
     };
   };
 
