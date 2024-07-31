@@ -10,8 +10,5 @@
   programs.chromium = {
     # Enable the browser.
     enable = true;
-
-    # Set the Chromium package to Brave.
-    package = pkgs.brave;
   };
 }
