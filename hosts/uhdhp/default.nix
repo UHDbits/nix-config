@@ -187,7 +187,7 @@
       inherit inputs outputs pkgs;
     };
     users = {
-      uhdbits = import ../../home-manager/home.nix;
+      uhdbits = import ../../home/uhdbits/uhdhp.nix;
     };
   };
 

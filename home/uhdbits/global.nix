@@ -1,5 +1,4 @@
-# This is your home-manager configuration file
-# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
+# Nix configuration file for global settings for home-manager.
 {
   inputs,
   outputs,
@@ -19,7 +18,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./chromium.nix
+    ./features/desktop/chromium.nix
   ];
 
   nixpkgs = {
