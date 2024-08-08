@@ -18,7 +18,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./features/desktop/chromium.nix
+    ./features/desktop/keymap.nix
   ];
 
   nixpkgs = {

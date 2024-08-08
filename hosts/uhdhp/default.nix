@@ -121,14 +121,10 @@
     pkgs.nixd
     pkgs.deadnix
     pkgs.lm_sensors
-    pkgs.floorp
   ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Install GnuPG
   programs.gnupg.agent.enable = true;

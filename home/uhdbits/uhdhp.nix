@@ -3,6 +3,7 @@
   imports = [
     # Imports for all home-manager features on this machine.
     ./global.nix
-    ./features/desktop/chromium.nix
+    ./features/desktop/programs/chromium.nix
+    ./features/desktop/programs/floorp.nix
   ];
 }
