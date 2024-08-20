@@ -5,5 +5,7 @@
     ./global.nix
     ./features/desktop/programs/chromium.nix
     ./features/desktop/programs/floorp.nix
+    ./features/desktop/warp.nix
+    ./features/development/frc.nix
   ];
 }

@@ -9,6 +9,12 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
+    # Repository of FRC-related packages.
+    frc-nix = {
+      url = "github:FRC3636/frc-nix/update-wpilib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
