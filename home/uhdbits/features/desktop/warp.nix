@@ -3,7 +3,6 @@
 {
   # Install the cloudflare-warp package, and the WARP toggle for GNOME.
   home.packages = [
-    pkgs.cloudflare-warp
     pkgs.gnomeExtensions.cloudflare-warp-toggle
   ];
 
