@@ -22,7 +22,6 @@
     # Add specific pacakges for the user (this will be changed soon).
     packages = [
       pkgs.gitkraken
-      pkgs.vscode
     ];
 
     # Set a temporary password for the user (this will be changed soon).
