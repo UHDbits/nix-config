@@ -7,5 +7,6 @@
     ./features/desktop/programs/floorp.nix
     ./features/desktop/warp.nix
     ./features/development/frc.nix
+    ./features/development/vscode.nix
   ];
 }

@@ -23,5 +23,5 @@
   ];
 
   # Add WPILib VS Code extension.
-  programs.vscode.extensions = [ pkgs.wpilib.vscode-extension ];
+  programs.vscode.extensions = [ pkgs.wpilib.vscode-wpilib ];
 }
