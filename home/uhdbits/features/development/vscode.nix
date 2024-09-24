@@ -1,4 +1,8 @@
 # Nix configuration package to install VS Code.
+{ pkgs, ... }:
 {
-  programs.vscode.enable = true;
+  programs.vscode = {
+    package = pkgs.vscode.fhs;
+    enable = true;
+  };
 }

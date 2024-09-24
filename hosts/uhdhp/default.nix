@@ -120,6 +120,7 @@
     pkgs.nixd
     pkgs.deadnix
     pkgs.lm_sensors
+    pkgs.jdk17
   ];
 
   # Enable CUPS to print documents.

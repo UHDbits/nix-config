@@ -1,7 +1,6 @@
 # Nix configuration file to set and enable Floorp (Firefox fork) settings with home-manager.
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.floorp ];
   # Set Firefox (Floorp) settings.
   programs.firefox = {
     # Enable the browser.
