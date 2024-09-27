@@ -7,14 +7,15 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
   # Import the lanzaboote module.
   imports = [
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
-  # Add sbctl to system packages to make debugging and troubleshooting easier.
-  environment.systemPackages = [
+  # Add sbctl to user packages to make debugging and troubleshooting easier.
+  users.users.uhdbits.packages = [
     pkgs.sbctl
   ];
 

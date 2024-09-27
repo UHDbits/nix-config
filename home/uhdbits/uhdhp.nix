@@ -4,9 +4,10 @@
     # Imports for all home-manager features on this machine.
     ./global.nix
     ./features/desktop/programs/chromium.nix
-    ./features/desktop/programs/floorp.nix
+    ./features/desktop/programs/firefox.nix
     ./features/desktop/warp.nix
     ./features/development/frc.nix
     ./features/development/vscode.nix
+    ./features/development/java
   ];
 }

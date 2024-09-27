@@ -35,7 +35,6 @@
     # Set kernel parameters.
     kernelParams = [
       "quiet"
-      "splash"
     ];
 
     # Set the supported filesystems on boot.

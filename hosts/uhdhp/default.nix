@@ -11,30 +11,27 @@
 {
   # You can import other NixOS modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ./ryzenadj.nix
     ./tlp.nix
     ../common/global
     ../common/optional/features/desktop/chromium.nix
+
+    # Common hardware imports to improve AMD CPU/GPU support.
     ../common/optional/hardware/cpu/amd
     ../common/optional/hardware/cpu/amd/pstate.nix
     ../common/optional/hardware/cpu/amd/zenpower.nix
     ../common/optional/hardware/gpu/amd
+
+    # Common TLP imports in order to make sure TLP functions.
     ../common/optional/hardware/laptop/acpi.nix
     ../common/optional/hardware/laptop/tlp.nix
+
+    # Other miscellaneous common hardware related imports.
     ../common/optional/hardware/sound
     ../common/optional/hardware/ssd
+
+    # Common UEFI imports to customize the bootloader and enable secure boot.
     ../common/optional/uefi/boot.nix
     ../common/optional/uefi/secureboot.nix
 
@@ -95,8 +92,6 @@
 
   # TODO: Set your hostname
   networking.hostName = "uhdhp";
-
-  hardware.amdgpu.initrd.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
