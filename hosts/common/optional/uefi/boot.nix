@@ -1,4 +1,5 @@
 # Nix configuration file to set general UEFI boot settings.
+{ pkgs, ... }:
 {
   # Set boot settings.
   boot = {
@@ -29,13 +30,25 @@
       theme = "bgrt";
     };
 
-    # Enable systemd initrd.
-    initrd.systemd.enable = true;
+    # Set the kernel packages to be based on the latest versions.
+    kernelPackages = pkgs.linuxPackages_latest;
+
+    # Set initrd settings.
+    initrd = {
+      # Enable systemd initrd.
+      systemd.enable = true;
+      # Disable verbose output.
+      verbose = false;
+    };
 
     # Set kernel parameters.
     kernelParams = [
       "quiet"
+      "udev.log_level=3"
     ];
+
+    # Set the console log level.
+    consoleLogLevel = 0;
 
     # Set the supported filesystems on boot.
     supportedFilesystems = [

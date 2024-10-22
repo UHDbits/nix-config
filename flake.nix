@@ -1,13 +1,10 @@
+# Nix configuration file for a flake-based configuration.
 {
-  description = "Your new nix config";
+  description = "NixOS configuration made by UHDbits/Ashton A";
 
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     # Repository of FRC-related packages.
     frc-nix = {

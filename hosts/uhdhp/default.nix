@@ -16,6 +16,7 @@
     ./tlp.nix
     ../common/global
     ../common/optional/features/desktop/chromium.nix
+    ../common/optional/features/desktop/warp.nix
 
     # Common hardware imports to improve AMD CPU/GPU support.
     ../common/optional/hardware/cpu/amd
@@ -126,8 +127,6 @@
 
   # Install the fish shell.
   programs.fish.enable = true;
-
-  services.cloudflare-warp.enable = true;
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
