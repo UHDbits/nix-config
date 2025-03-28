@@ -34,7 +34,7 @@
 
     # Common UEFI imports to customize the bootloader and enable secure boot.
     ../common/optional/uefi/boot.nix
-    ../common/optional/uefi/secureboot.nix
+    # ../common/optional/uefi/secureboot.nix
 
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -84,12 +84,12 @@
     };
 
   # Encrypted partition
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/nvme0n1p3";
-      preLVM = true;
-    };
-  };
+  #boot.initrd.luks.devices = {
+  #  root = {
+  #    device = "/dev/nvme0n1p3";
+  #    preLVM = true;
+  #  };
+  #};
 
   # TODO: Set your hostname
   networking.hostName = "uhdhp";
@@ -151,5 +151,5 @@
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }

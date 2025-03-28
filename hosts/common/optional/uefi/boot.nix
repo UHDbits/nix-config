@@ -52,7 +52,7 @@
 
     # Set the supported filesystems on boot.
     supportedFilesystems = [
-      "apfs"
+    #  "apfs"
       "bindfs"
       "btrfs"
       "ext4"

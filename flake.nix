@@ -4,11 +4,11 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
 
     # Repository of FRC-related packages.
     frc-nix = {
-      url = "github:FRC3636/frc-nix/update-wpilib";
+      url = "github:frc4451/frc-nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
