@@ -1,10 +1,10 @@
 # Nix configuration file for a flake-based configuration.
 {
-  description = "NixOS configuration made by UHDbits/Ashton A";
+  description = "Personal NixOS configuration made by UHDbits/Ashton A";
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Repository of FRC-related packages.
     frc-nix = {

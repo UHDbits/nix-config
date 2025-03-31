@@ -1,7 +1,7 @@
 # Nix configuration file to setup basic sound settings.
 {
   # Make sure PulseAudio is not enabled, as it conflicts with PipeWire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   # Enable the RealtimeKit system service.
   security.rtkit.enable = true;
