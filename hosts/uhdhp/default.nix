@@ -116,7 +116,8 @@
     pkgs.nixd
     pkgs.deadnix
     pkgs.lm_sensors
-    pkgs.jdk17
+    pkgs.jdk21
+    pkgs.bambu-studio
   ];
 
   # Enable CUPS to print documents.

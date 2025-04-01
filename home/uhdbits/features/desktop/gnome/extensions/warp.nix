@@ -1,4 +1,4 @@
-# Nix configuration file to enable Cloudflare WARP.
+# Nix configuration file to enable the Cloudflare WARP extension in GNOME.
 { pkgs, ... }:
 {
   # Install the WARP toggle for GNOME.
