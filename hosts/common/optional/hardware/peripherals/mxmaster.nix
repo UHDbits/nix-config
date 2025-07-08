@@ -1,0 +1,1 @@
+# Nix configuration file to setup the Logitech MX Master 3S.
