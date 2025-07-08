@@ -11,6 +11,7 @@
 {
   # You can import other NixOS modules here
   imports = [
+    ./filesystem.nix
     ./hardware-configuration.nix
     ./ryzenadj.nix
     ./tlp.nix
