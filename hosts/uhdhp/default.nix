@@ -35,7 +35,7 @@
 
     # Common UEFI imports to customize the bootloader and enable secure boot.
     ../common/optional/uefi/boot.nix
-    # ../common/optional/uefi/secureboot.nix
+    ../common/optional/uefi/secureboot.nix
 
     inputs.home-manager.nixosModules.home-manager
   ];

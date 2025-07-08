@@ -25,6 +25,6 @@
   # Enable Lanzaboote and set key location
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = "/etc/secureboot";
+    pkiBundle = "/var/lib/sbctl";
   };
 }
