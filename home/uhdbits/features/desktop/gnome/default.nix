@@ -2,6 +2,6 @@
 {
   imports = [
     ./settings.nix
-    ./extensions/warp.nix
+    ./extensions.nix
   ];
 }

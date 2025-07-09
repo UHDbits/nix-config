@@ -1,6 +1,6 @@
 # Nix configuration file for a flake-based configuration.
 {
-  description = "Personal NixOS configuration made by UHDbits/Ashton A";
+  description = "Personal NixOS configuration made by UHDbits/Ashton A.";
 
   inputs = {
     # Nixpkgs
