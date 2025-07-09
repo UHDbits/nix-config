@@ -18,6 +18,7 @@
     ../common/global
     ../common/optional/features/desktop/chromium.nix
     ../common/optional/features/desktop/warp.nix
+    ../common/optional/features/desktop/gnome.nix
 
     # Common hardware imports to improve AMD CPU/GPU support.
     ../common/optional/hardware/cpu/amd
@@ -33,8 +34,8 @@
     ../common/optional/hardware/ssd
 
     # Common UEFI imports to customize the bootloader and enable secure boot.
-    ../common/optional/uefi/systemd-boot.nix
-    ../common/optional/uefi/secureboot.nix
+    ../common/optional/boot/systemd-boot.nix
+    ../common/optional/boot/secureboot.nix
 
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -99,11 +100,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
-  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
