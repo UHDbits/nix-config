@@ -5,6 +5,7 @@
     ./global.nix
     ./features/desktop/programs/chromium.nix
     ./features/desktop/programs/firefox.nix
+    ./features/desktop/programs/general.nix
     ./features/desktop/gnome
     ./features/development/frc.nix
     ./features/development/vscode.nix

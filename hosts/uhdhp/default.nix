@@ -106,16 +106,7 @@
     layout = "us";
     variant = "";
   };
-
-  environment.systemPackages = [
-    pkgs.nixfmt-rfc-style
-    pkgs.nixd
-    pkgs.deadnix
-    pkgs.lm_sensors
-    pkgs.jdk21
-    pkgs.bambu-studio
-  ];
-
+  
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
