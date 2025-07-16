@@ -117,6 +117,8 @@
   # Install the fish shell.
   programs.fish.enable = true;
 
+  services.flatpak.enable = true;
+
   home-manager = {
     extraSpecialArgs = {
       inherit inputs outputs pkgs;
