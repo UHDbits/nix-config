@@ -1,5 +1,4 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
+# NixOS configuration file for my HP ProBook 445 G9.
 {
   inputs,
   outputs,
@@ -55,15 +54,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-  
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

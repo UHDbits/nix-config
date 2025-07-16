@@ -1,6 +1,6 @@
-# Nix configuration file to enable Secure Boot on UEFI systems.
+# Nix module to enable Secure Boot on UEFI systems.
 ###############################################################
-# Before using this file, make sure the system is prepared using the directions at:
+# Before using this module, make sure the system is prepared using the directions at:
 # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
 {
   inputs,
