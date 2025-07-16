@@ -26,7 +26,6 @@
     {
       self,
       nixpkgs,
-      home-manager,
       ...
     }@inputs:
     let
@@ -46,8 +45,7 @@
     {
       # Main formatter for this code, accessible through "nix fmt"
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
+
       nixosConfigurations = {
         # My main system, HP ProBook 445 G9
         uhdhp = nixpkgs.lib.nixosSystem {
@@ -55,7 +53,6 @@
             inherit inputs outputs;
           };
           modules = [
-            # > Our main nixos configuration file <
             ./hosts/uhdhp
           ];
         };

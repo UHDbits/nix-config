@@ -21,7 +21,6 @@ with lib.hm.gvariant;
 
     # Desktop interface configuration
     "org/gnome/desktop/interface" = {
-      # Change the clock to 12h
       clock-format = "12h";
     };
 
