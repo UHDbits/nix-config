@@ -4,6 +4,7 @@
     pkgs.gnomeExtensions.blur-my-shell
     pkgs.gnomeExtensions.cloudflare-warp-toggle
     pkgs.gnomeExtensions.dash-to-dock
+    pkgs.gnomeExtensions.printers
   ];
 
   dconf.settings = {
