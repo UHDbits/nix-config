@@ -9,6 +9,6 @@
     ./features/desktop/gnome
     ./features/development/frc.nix
     ./features/development/vscode.nix
-    ./features/development/java
+    # ./features/development/java
   ];
 }
