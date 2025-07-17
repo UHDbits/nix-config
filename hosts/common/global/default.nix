@@ -1,5 +1,5 @@
 # Nix configuration file for default configurations applied globally.
-{ inputs, lib, config, pkgs, ... }:
+{ inputs, lib, config, ... }:
 {
   imports = [
     ./locale.nix

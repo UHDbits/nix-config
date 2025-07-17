@@ -1,10 +1,7 @@
 # Nix configuration file for global settings for home-manager.
 {
-  inputs,
   outputs,
-  lib,
   config,
-  pkgs,
   ...
 }:
 {

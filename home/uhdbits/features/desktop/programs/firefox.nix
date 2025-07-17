@@ -1,5 +1,5 @@
 # Nix configuration file to set and enable Floorp (Firefox fork) settings with home-manager.
-{ pkgs, ... }:
+{ ... }:
 {
   # Set Firefox (Floorp) settings.
   programs.firefox = {

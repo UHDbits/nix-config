@@ -1,5 +1,5 @@
 # Nix configuration file to install FRC related packages.
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   # Install packages for FRC.
   home.packages = [

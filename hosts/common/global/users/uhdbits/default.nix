@@ -1,9 +1,5 @@
 # Nix configuration file to setup my main user, uhdbits.
 {
-  inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
   ...
 }:

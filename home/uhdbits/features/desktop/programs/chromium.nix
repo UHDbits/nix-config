@@ -1,8 +1,5 @@
 # Nix configuration file to set and enable Chromium settings with home-manager.
 {
-  inputs,
-  outputs,
-  pkgs,
   ...
 }:
 {
