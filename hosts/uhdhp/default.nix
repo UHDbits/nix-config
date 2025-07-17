@@ -32,6 +32,7 @@
     ../common/optional/hardware/sound
     ../common/optional/hardware/ssd
     ../common/optional/hardware/peripherals/fingerprint.nix
+    ../common/optional/hardware/peripherals/printing.nix
 
     # Common UEFI imports to customize the bootloader and enable secure boot.
     ../common/optional/boot/systemd-boot.nix
