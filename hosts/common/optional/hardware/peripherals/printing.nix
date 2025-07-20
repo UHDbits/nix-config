@@ -4,11 +4,10 @@
   services.printing = {
     cups-pdf.instances.pdf.settings = { 
       Out = "\${HOME}/Downloads";
-      UserUMask = "0033";
     };
-    drivers = lib.mkForce [ pkgs.hplipWithPlugin ];
+    drivers = lib.mkDefault [ pkgs.hplipWithPlugin ];
     enable = lib.mkForce true;
-    webInterface = lib.mkForce false;
+    webInterface = lib.mkDefault false;
   };
 
   # Enable the IPP everywhere protocol.

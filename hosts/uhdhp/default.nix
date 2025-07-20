@@ -1,5 +1,6 @@
 # NixOS configuration file for my HP ProBook 445 G9.
 {
+  lib,
   inputs,
   outputs,
   pkgs,
@@ -13,6 +14,8 @@
     ./ryzenadj.nix
     ./tlp.nix
     ../common/global
+    ../common/optional/features/fish.nix
+    ../common/optional/features/flatpak.nix
     ../common/optional/features/desktop/chromium.nix
     ../common/optional/features/desktop/warp.nix
     ../common/optional/features/desktop/gnome.nix
@@ -55,11 +58,6 @@
   
   # Install GnuPG
   programs.gnupg.agent.enable = true;
-
-  # Install the fish shell.
-  programs.fish.enable = true;
-
-  services.flatpak.enable = true;
 
   home-manager = {
     extraSpecialArgs = {
