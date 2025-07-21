@@ -1,10 +1,8 @@
 # Nix configuration file for printing support.
 {lib, pkgs, ...}:
 {
+  # Configure normal printing settings.
   services.printing = {
-    cups-pdf.instances.pdf.settings = { 
-      Out = "\${HOME}/Downloads";
-    };
     drivers = lib.mkDefault [ pkgs.hplipWithPlugin ];
     enable = lib.mkForce true;
     webInterface = lib.mkDefault false;

@@ -7,5 +7,6 @@
     pkgs.lm_sensors
     pkgs.jdk21
     pkgs.bambu-studio
+    pkgs.gitkraken
   ];
 }
