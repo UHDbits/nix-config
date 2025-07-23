@@ -19,20 +19,35 @@ with lib.hm.gvariant;
       ];
     };
 
+    "org/gnome/desktop/file-sharing" = {
+      require-password = true;
+    };
+
     # Desktop interface configuration
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
+      clock-show-weekday = true;
       color-scheme = "prefer-dark";
+      enable-hot-corners = false;
+      locate-pointer = true;
       show-battery-percentage = true;
     };
 
-    "org/gnome/desktop/session" = {
-      idle-delay = 600;
+    "org/gnome/desktop/peripherals/touchpad" = {
+      disable-while-typing = false;
     }
 
-    "org/gnome/desktop/sound" = {
-      event-sounds = false;
+    "org/gnome/desktop/session" = {
+      idle-delay = 300;
     };
+
+    "org/gnome/desktop/sound" = {
+      event-sounds = true;
+    };
+
+    "org/gnome/screensaver" = {
+      lock-delay = 0;
+    }
 
     # Night light configuration
     "org/gnome/settings-daemon/plugins/color" = {
