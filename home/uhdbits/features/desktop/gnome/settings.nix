@@ -35,7 +35,7 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/peripherals/touchpad" = {
       disable-while-typing = false;
-    }
+    };
 
     "org/gnome/desktop/session" = {
       idle-delay = 300;
@@ -51,13 +51,13 @@ with lib.hm.gvariant;
 
     "org/gnome/screensaver" = {
       lock-delay = 0;
-    }
+    };
 
     # Night light configuration
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
       night-light-schedule-automatic = false;
-      night-light-schedule-from = 20;
+      night-light-schedule-from = 21;
       night-light-schedule-to = 6;
       night-light-temperature = 2700;
     };
