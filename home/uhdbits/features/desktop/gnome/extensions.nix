@@ -40,6 +40,7 @@
     pkgs.gnomeExtensions.fuzzy-app-search
     pkgs.gnomeExtensions.gnome-40-ui-improvements
     pkgs.gnomeExtensions.gsconnect
+    pkgs.gnomeExtensions.hide-top-bar
     pkgs.gnomeExtensions.just-perfection
     pkgs.gnomeExtensions.lilypad
     pkgs.gnomeExtensions.night-light-slider-updated
@@ -49,9 +50,34 @@
     pkgs.gnomeExtensions.panel-corners
     pkgs.gnomeExtensions.pano
     pkgs.gnomeExtensions.pip-on-top
+    pkgs.gnomeExtensions.power-tracker
     pkgs.gnomeExtensions.printers
+    pkgs.gnomeExtensions.privacy-indicators-accent-color
+    pkgs.gnomeExtensions.privacy-settings-menu
+    pkgs.gnomeExtensions.quick-settings-audio-devices-renamer
+    pkgs.gnomeExtensions.quick-settings-audio-panel
+    pkgs.gnomeExtensions.quicksettings-indicator-visibility-tool
+    pkgs.gnomeExtensions.random-wallpaper
+    pkgs.gnomeExtensions.rectangle
+    pkgs.gnomeExtensions.restart-to
+    pkgs.gnomeExtensions.right-click-next
+    pkgs.gnomeExtensions.rounded-window-corners-reborn
+    pkgs.gnomeExtensions.set-monitor-ddc-brightnesscontrast-extra-dimming
+    pkgs.gnomeExtensions.show-desktop-applet
+    pkgs.gnomeExtensions.signal-shell
+    pkgs.gnomeExtensions.slinger
+    pkgs.gnomeExtensions.solaar-extension
+    pkgs.gnomeExtensions.speedinator
+    pkgs.gnomeExtensions.steal-my-focus-window
     pkgs.gnomeExtensions.tiling-assistant
+    pkgs.gnomeExtensions.tiling-shell
+    pkgs.gnomeExtensions.tactile
+    pkgs.gnomeExtensions.upower-battery
+    pkgs.gnomeExtensions.useless-gaps
     pkgs.gnomeExtensions.weekly-commits
+    pkgs.gnomeExtensions.window-is-ready-remover
+    pkgs.gnomeExtensions.window-gestures
+    pkgs.gnomeExtensions.wireless-hid
   ];
 
   dconf.settings = {
