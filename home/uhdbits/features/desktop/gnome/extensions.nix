@@ -34,10 +34,10 @@
     pkgs.gnomeExtensions.quick-settings-audio-panel
     pkgs.gnomeExtensions.rectangle
     pkgs.gnomeExtensions.rounded-window-corners-reborn
-    pkgs.gnomeExtensions.signal-shell # Configure
     pkgs.gnomeExtensions.solaar-extension
     pkgs.gnomeExtensions.tiling-assistant # Enabled, configure settings
     pkgs.gnomeExtensions.tiling-shell # Enabled, configure settings
+    pkgs.gnomeExtensions.user-themes
     pkgs.gnomeExtensions.window-gestures # Enabled, configure settings
   ];
 
@@ -87,7 +87,7 @@
     };
 
     "org/gnome/shell/extensions/blur-my-shell/hidetopbar" = {
-      compatibility = true; # Might not be needed?
+      compatibility = false; 
     };
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
@@ -102,7 +102,7 @@
       apply-custom-theme = false;
       dash-max-icon-size = 42;
       hot-keys = false;
-      show-show-apps-button = false;
+      intellihide-mode = "ALL_WINDOWS";
     };
 
     "org/gnome/shell/extensions/EasyScreenCast" = {
@@ -112,6 +112,7 @@
     };
 
     "org/gnome/shell/extensions/hidetopbar" = {
+      enable-active-window = false;
       mouse-sensitive = true;
     };
 
