@@ -1,10 +1,15 @@
 { pkgs, ... }:
 {
   home.packages = [
+    # GNOME JavaScript engine
+    pkgs.gjs
+
+    # Extensions
     pkgs.gnomeExtensions.accent-directories # Done
     pkgs.gnomeExtensions.adw-gtk3-colorizer # Done
     pkgs.gnomeExtensions.alphabetical-app-grid # Done
     pkgs.gnomeExtensions.alt-tab-current-monitor # Done
+    pkgs.gnomeExtensions.auto-accent-colour # Done
     pkgs.gnomeExtensions.bangs-search
     pkgs.gnomeExtensions.battery-time-2 # Done
     pkgs.gnomeExtensions.blur-my-shell # Enabled, configure settings
