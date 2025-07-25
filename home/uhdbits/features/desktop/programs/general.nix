@@ -6,6 +6,7 @@
     pkgs.deadnix
     pkgs.ddcutil
     pkgs.lm_sensors
+    pkgs.imagemagick
     pkgs.jdk21
     pkgs.bambu-studio
     pkgs.gitkraken

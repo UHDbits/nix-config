@@ -3,52 +3,45 @@
   home.packages = [
     pkgs.gnomeExtensions.accent-directories # Done
     pkgs.gnomeExtensions.adw-gtk3-colorizer # Done
-    pkgs.gnomeExtensions.advanced-alttab-window-switcher
-    pkgs.gnomeExtensions.alphabetical-app-grid
-    pkgs.gnomeExtensions.alt-tab-current-monitor
-    pkgs.gnomeExtensions.auto-accent-colour
+    pkgs.gnomeExtensions.alphabetical-app-grid # Done
+    pkgs.gnomeExtensions.alt-tab-current-monitor # Done
     pkgs.gnomeExtensions.bangs-search
     pkgs.gnomeExtensions.battery-time-2 # Done
-    pkgs.gnomeExtensions.blur-my-shell
+    pkgs.gnomeExtensions.blur-my-shell # Enabled, configure settings
     pkgs.gnomeExtensions.brightness-control-using-ddcutil
     pkgs.gnomeExtensions.burn-my-windows
     pkgs.gnomeExtensions.caffeine # Enabled, configure settings
     pkgs.gnomeExtensions.click-to-close-overview # Done
-    pkgs.gnomeExtensions.clipboard-indicator
-    pkgs.gnomeExtensions.clipqr
+    pkgs.gnomeExtensions.clipboard-indicator # Done
+    pkgs.gnomeExtensions.clipqr # Done
     pkgs.gnomeExtensions.color-picker # Enabled, configure settings
     pkgs.gnomeExtensions.compact-top-bar
     pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
     pkgs.gnomeExtensions.custom-command-toggle
     pkgs.gnomeExtensions.custom-reboot
-    pkgs.gnomeExtensions.dash2dock-lite
     pkgs.gnomeExtensions.dash-to-dock
-    pkgs.gnomeExtensions.dynamic-panel
-    pkgs.gnomeExtensions.easyScreenCast
-    pkgs.gnomeExtensions.flickernaut
+    pkgs.gnomeExtensions.easyScreenCast # Enabled, configure settings
+    pkgs.gnomeExtensions.flickernaut # Enabled, configure settings
     pkgs.gnomeExtensions.force-quit # Done
     pkgs.gnomeExtensions.fuzzy-app-search # Done
     pkgs.gnomeExtensions.gnome-40-ui-improvements
     pkgs.gnomeExtensions.gsconnect
-    pkgs.gnomeExtensions.hide-top-bar
+    pkgs.gnomeExtensions.hide-top-bar # Done
     pkgs.gnomeExtensions.just-perfection
-    pkgs.gnomeExtensions.lilypad
+    pkgs.gnomeExtensions.lilypad # Enabled, configure settings
     pkgs.gnomeExtensions.night-light-slider-updated
     pkgs.gnomeExtensions.open-bar
     pkgs.gnomeExtensions.pip-on-top # Done
-    pkgs.gnomeExtensions.power-tracker # Done
-    pkgs.gnomeExtensions.privacy-indicators-accent-color
-    pkgs.gnomeExtensions.quick-settings-audio-devices-renamer
-    pkgs.gnomeExtensions.quick-settings-audio-panel
-    pkgs.gnomeExtensions.rectangle
+    pkgs.gnomeExtensions.quick-settings-audio-devices-renamer # Enabled, configure settings
+    pkgs.gnomeExtensions.quick-settings-audio-panel # Done
+    pkgs.gnomeExtensions.rectangle # Enabled, configure settings
     pkgs.gnomeExtensions.rounded-window-corners-reborn # Done
     pkgs.gnomeExtensions.signal-shell
     pkgs.gnomeExtensions.solaar-extension
-    pkgs.gnomeExtensions.steal-my-focus-window
-    pkgs.gnomeExtensions.tiling-assistant
-    pkgs.gnomeExtensions.tiling-shell
-    pkgs.gnomeExtensions.tactile
-    pkgs.gnomeExtensions.window-gestures
+    pkgs.gnomeExtensions.tiling-assistant # Enabled, configure settings
+    pkgs.gnomeExtensions.tiling-shell # Enabled, configure settings
+    pkgs.gnomeExtensions.tactile # Enabled, configure settings
+    pkgs.gnomeExtensions.window-gestures # Enabled, configure settings
   ];
 
   # Settings for extensions.
