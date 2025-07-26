@@ -1,7 +1,25 @@
 # Nix configuration file for general GNOME settings.
-{ lib, ... }:
+{ lib, pkgs, ... }:
 with lib.hm.gvariant;
 {
+  # Configure GTK theming and configuration.
+  gtk = {
+    enable = true;
+    theme = {
+      name = lib.mkDefault "Adwaita-dark";
+      package = lib.mkDefault pkgs.gnome-themes-extra;
+    };
+
+    gtk3 = {
+      enable = true;
+      theme = {
+        name = lib.mkDefault "adw-gtk3-dark";
+        package = lib.mkDefault pkgs.adw-gtk3;
+      };
+    };
+  };
+
+  # Configure dconf settings.
   dconf.settings = {
     # Input sources/keymap configuration
     "org/gnome/desktop/input-sources" = {
