@@ -10,6 +10,6 @@
     ./features/desktop/fonts.nix
     ./features/development/frc.nix
     ./features/development/vscode.nix
-    # ./features/development/java
+    ./features/development/java
   ];
 }
