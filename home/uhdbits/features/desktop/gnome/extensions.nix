@@ -26,19 +26,14 @@
     pkgs.gnomeExtensions.flickernaut # Configure settings
     pkgs.gnomeExtensions.force-quit
     pkgs.gnomeExtensions.fuzzy-app-search
-    pkgs.gnomeExtensions.gsconnect # Check if want to use
-    pkgs.gnomeExtensions.hide-top-bar
     pkgs.gnomeExtensions.lilypad # Configure
     pkgs.gnomeExtensions.pip-on-top
     pkgs.gnomeExtensions.quick-settings-audio-devices-renamer # Finish configuration
     pkgs.gnomeExtensions.quick-settings-audio-panel
     pkgs.gnomeExtensions.rectangle
-    pkgs.gnomeExtensions.rounded-window-corners-reborn
     pkgs.gnomeExtensions.solaar-extension
-    pkgs.gnomeExtensions.tiling-assistant # Enabled, configure settings
     pkgs.gnomeExtensions.tiling-shell # Enabled, configure settings
     pkgs.gnomeExtensions.user-themes
-    pkgs.gnomeExtensions.window-gestures # Enabled, configure settings
   ];
 
   # Settings for extensions.
@@ -55,6 +50,7 @@
         "burn-my-windows@schneegans.github.com"
         "caffeine@patapon.info"
         "click-to-close-overview@l3nn4rt.github.io"
+        "clipboard-indicator@tudmotu.com"
         "clipqr@drien.com"
         "color-picker@tuberry"
         "custom-command-toggle@storageb.github.com"
@@ -63,14 +59,14 @@
         "flickernaut@imoize.github.io"
         "fq@megh"
         "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-        "hidetopbar@mathieu.bidon.ca"
         "lilypad@shendrew.github.io"
         "quicksettings-audio-devices-renamer@marcinjahn.com"
         "pip-on-top@rafostar.github.com"
         "quick-settings-audio-panel@rayzeq.github.io"
         "rectangle@acristoffers.me"
-        "rounded-window-corners@fxgn"
         "solaar-extension@sidevesh"
+        "tilingshell@ferrarodomenico.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
     };
 
@@ -91,6 +87,7 @@
     };
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+      static-blur = false;
       unblur-in-overview = false;
     };
 
@@ -99,8 +96,10 @@
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
+      always-center-icons = true;
       apply-custom-theme = false;
       dash-max-icon-size = 42;
+      extend-height = true;
       hot-keys = false;
       intellihide-mode = "ALL_WINDOWS";
     };
@@ -117,7 +116,7 @@
     };
 
     "org/gnome/shell/extensions/lilypad" = {
-      lilypad-order = ["ForceQuitButton" "EasyScreenCast_indicator" "color_picker" "clipqr" "clipboardIndicator" "keyboard"];
+      lilypad-order = ["ForceQuitButton" "EasyScreenCast_indicator" "color_picker" "clipqr" "clipboardIndicator" "Rectangle" "tilingshell" "keyboard"];
       rightbox-order = ["lilypad"];
     };
   };

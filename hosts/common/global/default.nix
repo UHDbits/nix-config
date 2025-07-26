@@ -6,6 +6,8 @@
     ./users/uhdbits/default.nix
   ];
 
+  system.rebuild.enableNg = true;
+
   # Setup nixpkgs
   nixpkgs = {
     overlays = [
