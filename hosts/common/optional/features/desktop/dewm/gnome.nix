@@ -11,11 +11,13 @@
   };
 
   # Default GNOME apps to exclude.
-  environment.gnome.excludePackages = [
-    pkgs.decibels
-    pkgs.geary
-    pkgs.gnome-software
-    pkgs.gnome-tour
-    pkgs.totem
+  environment.gnome.excludePackages = with pkgs; [
+    epiphany
+    geary
+    gnome-characters
+    gnome-connections
+    gnome-software
+    gnome-tour
+    totem
   ];
 }

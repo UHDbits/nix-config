@@ -37,7 +37,7 @@
   ];
 
   # Settings for extensions.
-  dconf.settings = {
+  dconf.settings = with lib.hm.gvariant; {
     "org/gnome/shell" = {
       enabled-extensions = lib.mkDefault [
         "accent-directories@taiwbi.com"
@@ -118,6 +118,17 @@
     "org/gnome/shell/extensions/lilypad" = {
       lilypad-order = ["ForceQuitButton" "EasyScreenCast_indicator" "color_picker" "clipqr" "clipboardIndicator" "Rectangle" "tilingshell" "keyboard"];
       rightbox-order = ["lilypad"];
+    };
+
+    "org/gnome/shell/extensions/tilingshell" = {
+      enable-screen-edges-windows-suggestions = false;
+      enable-snap-assistant-windows-suggestions = true;
+      enable-tiling-system = false;
+      inner-gaps = mkUint32 8;
+      outer-gaps = mkUint32 8;
+      quarter-tiling-threshold = mkUint32 30;
+      show-indicator = false;
+      top-edge-maximize = true;
     };
   };
 }
