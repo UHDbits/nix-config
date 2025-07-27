@@ -4,9 +4,6 @@
   time = {
     # Set my time zone.
     timeZone = "America/Phoenix";
-
-    # Set hardware clock to be stored in local time to ensure compatibility with Windows.
-    hardwareClockInLocalTime = true;
   };
 
   # Select internationalisation properties.
