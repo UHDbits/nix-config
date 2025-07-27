@@ -20,7 +20,7 @@ with lib.hm.gvariant;
   };
 
   # Configure dconf settings.
-  dconf.settings = {
+  dconf.settings = with lib.hm.gvariant; {
     # Input sources/keymap configuration
     "org/gnome/desktop/input-sources" = {
       sources = [
@@ -56,7 +56,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/session" = {
-      idle-delay = 300;
+      idle-delay = mkUint32 300;
     };
 
     "org/gnome/desktop/sound" = {
@@ -75,9 +75,9 @@ with lib.hm.gvariant;
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
       night-light-schedule-automatic = false;
-      night-light-schedule-from = 21;
-      night-light-schedule-to = 6;
-      night-light-temperature = 2700;
+      night-light-schedule-from = mkDouble 21.0;
+      night-light-schedule-to = mkDouble 6.0;
+      night-light-temperature = mkUint32 2700;
     };
 
     "org/gnome/settings-daemon/plugins/power" = {

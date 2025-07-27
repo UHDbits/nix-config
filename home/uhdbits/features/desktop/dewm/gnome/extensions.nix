@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   home.packages = [
     # GNOME JavaScript engine
@@ -39,7 +39,7 @@
   # Settings for extensions.
   dconf.settings = {
     "org/gnome/shell" = {
-      enabled-extensions = [
+      enabled-extensions = lib.mkDefault [
         "accent-directories@taiwbi.com"
         "adw-gtk3-colorizer@NiffirgkcaJ.github.com"
         "AlphabeticalAppGrid@stuarthayhurst"
