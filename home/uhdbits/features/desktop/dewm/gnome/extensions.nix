@@ -33,7 +33,6 @@
     pkgs.gnomeExtensions.rectangle
     pkgs.gnomeExtensions.solaar-extension
     pkgs.gnomeExtensions.tiling-shell # Enabled, configure settings
-    pkgs.gnomeExtensions.user-themes
   ];
 
   # Settings for extensions.
@@ -66,7 +65,6 @@
         "rectangle@acristoffers.me"
         "solaar-extension@sidevesh"
         "tilingshell@ferrarodomenico.com"
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
     };
 
