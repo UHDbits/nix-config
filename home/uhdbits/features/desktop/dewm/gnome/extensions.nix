@@ -81,7 +81,7 @@
     };
 
     "org/gnome/shell/extensions/blur-my-shell/hidetopbar" = {
-      compatibility = false; 
+      compatibility = false;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
@@ -114,8 +114,17 @@
     };
 
     "org/gnome/shell/extensions/lilypad" = {
-      lilypad-order = ["ForceQuitButton" "EasyScreenCast_indicator" "color_picker" "clipqr" "clipboardIndicator" "Rectangle" "tilingshell" "keyboard"];
-      rightbox-order = ["lilypad"];
+      lilypad-order = [
+        "ForceQuitButton"
+        "EasyScreenCast_indicator"
+        "color_picker"
+        "clipqr"
+        "clipboardIndicator"
+        "Rectangle"
+        "tilingshell"
+        "keyboard"
+      ];
+      rightbox-order = [ "lilypad" ];
     };
 
     "org/gnome/shell/extensions/tilingshell" = {

@@ -69,11 +69,11 @@ with lib.hm.gvariant;
 
     "org/gnome/mutter" = {
       experimental-features = [
-            "scale-monitor-framebuffer"
-            "xwayland-native-scaling"
-          ];
+        "scale-monitor-framebuffer"
+        "xwayland-native-scaling"
+      ];
     };
-    
+
     "org/gnome/screensaver" = {
       lock-delay = 0;
     };

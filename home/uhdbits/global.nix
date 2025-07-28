@@ -1,9 +1,5 @@
 # Nix configuration file for global settings for home-manager.
-{
-  outputs,
-  config,
-  ...
-}:
+{ outputs, config, ... }:
 {
   # You can import other home-manager modules here
   imports = [

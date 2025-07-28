@@ -9,13 +9,9 @@
   ...
 }:
 {
-  imports = [
-    inputs.lanzaboote.nixosModules.lanzaboote
-  ];
+  imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
-  users.users.uhdbits.packages = [
-    pkgs.sbctl
-  ];
+  users.users.uhdbits.packages = [ pkgs.sbctl ];
 
   # Disable systemd-boot (replaced by Lanzaboote).
   boot.loader.systemd-boot.enable = lib.mkForce false;

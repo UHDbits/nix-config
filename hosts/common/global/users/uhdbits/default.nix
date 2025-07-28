@@ -1,8 +1,5 @@
 # Nix configuration file to setup my main user, uhdbits.
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   # Configure the basic user settings.
   users.users.uhdbits = {

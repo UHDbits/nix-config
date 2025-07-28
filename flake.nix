@@ -23,11 +23,7 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      ...
-    }@inputs:
+    { self, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       # Supported systems for your flake packages, shell, etc.
@@ -49,12 +45,8 @@
       nixosConfigurations = {
         # My main system, HP ProBook 445 G9
         uhdhp = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            ./hosts/uhdhp
-          ];
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/uhdhp ];
         };
       };
     };

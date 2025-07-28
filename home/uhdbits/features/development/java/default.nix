@@ -1,5 +1,1 @@
-{
-  imports = [
-    ./intellij.nix
-  ];
-}
+{ imports = [ ./intellij.nix ]; }

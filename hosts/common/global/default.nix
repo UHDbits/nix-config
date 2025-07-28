@@ -1,5 +1,10 @@
 # Nix configuration file for default configurations applied globally.
-{ inputs, lib, config, ... }:
+{
+  inputs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     ./locale.nix
@@ -10,9 +15,7 @@
 
   # Setup nixpkgs
   nixpkgs = {
-    overlays = [
-      inputs.frc-nix.overlays.default
-    ];
+    overlays = [ inputs.frc-nix.overlays.default ];
 
     config = {
       allowUnfree = true;

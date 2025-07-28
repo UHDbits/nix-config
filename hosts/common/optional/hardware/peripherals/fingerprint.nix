@@ -1,4 +1,2 @@
 # Nix configuration files to enable fingerprint support.
-{
-  services.fprintd.enable = true;
-}
+{ services.fprintd.enable = true; }

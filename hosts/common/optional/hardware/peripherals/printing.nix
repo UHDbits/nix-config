@@ -1,5 +1,5 @@
 # Nix configuration file for printing support.
-{lib, pkgs, ...}:
+{ lib, pkgs, ... }:
 {
   # Configure normal printing settings.
   services.printing = {

@@ -21,10 +21,12 @@
       # Set the default search engine.
       "DefaultSearchProviderEnabled" = true;
       "DefaultSearchProviderName" = "Google";
-      "DefaultSearchProviderSearchURL" = "{google:baseURL}search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}ie={inputEncoding}";
+      "DefaultSearchProviderSearchURL" =
+        "{google:baseURL}search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}ie={inputEncoding}";
       "DefaultSearchProviderSuggestURL" = "{google:baseURL}complete/search?output=chrome&q={searchTerms}";
       "DefaultSearchProviderImageURL" = "{google:baseURL}searchbyimage/upload";
-      "DefaultSearchProviderImageURLPostParams" = "encoded_image={google:imageThumbnail},image_url={google:imageURL},sbisrc={google:imageSearchSource},original_width={google:imageOriginalWidth},original_height={google:imageOriginalHeight}";
+      "DefaultSearchProviderImageURLPostParams" =
+        "encoded_image={google:imageThumbnail},image_url={google:imageURL},sbisrc={google:imageSearchSource},original_width={google:imageOriginalWidth},original_height={google:imageOriginalHeight}";
       "DefaultSearchProviderKeyword" = "google";
 
       # Disable restore on startup.

@@ -1,4 +1,2 @@
 # Nix configuration file for the fish shell.
-{
-  programs.fish.enable = true;
-}
+{ programs.fish.enable = true; }
