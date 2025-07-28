@@ -67,6 +67,13 @@ with lib.hm.gvariant;
       button-layout = "appmenu:minimize,maximize,close";
     };
 
+    "org/gnome/mutter" = {
+      experimental-features = [
+            "scale-monitor-framebuffer"
+            "xwayland-native-scaling"
+          ];
+    };
+    
     "org/gnome/screensaver" = {
       lock-delay = 0;
     };
