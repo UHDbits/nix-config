@@ -5,20 +5,22 @@
 {
   inputs,
   lib,
-  pkgs,
   ...
 }:
 {
   imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
-  users.users.uhdbits.packages = [ pkgs.sbctl ];
-
-  # Disable systemd-boot (replaced by Lanzaboote).
+  # Disable systemd-boot as Lanzaboote replaces it.
   boot.loader.systemd-boot.enable = lib.mkForce false;
 
   # Enable Lanzaboote and set key location.
   boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/var/lib/sbctl";
+    enable = lib.mkForce true;
+    pkiBundle = lib.mkForce "/var/lib/sbctl";
   };
+
+  # Impermanence
+  /* environment.persistence = {
+    "/persist".directories = ["/var/lib/sbctl"];
+  }; */
 }

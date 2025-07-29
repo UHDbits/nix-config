@@ -7,6 +7,7 @@
 }:
 {
   imports = [
+    ./boot.nix
     ./locale.nix
     ./users/uhdbits/default.nix
   ];

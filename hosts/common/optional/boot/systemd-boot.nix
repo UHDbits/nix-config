@@ -1,12 +1,13 @@
-# Nix configuration file to set basic EFI boot settings, using systemd-boot as the default.
-{ pkgs, ... }:
+# Nix configuration file to set settings and enable the systemd-boot bootloader.
+{ lib, ... }:
 {
   boot = {
     loader = {
       systemd-boot = {
         enable = true;
-        editor = false;
-        configurationLimit = 5;
+
+        configurationLimit = lib.mkDefault 5;
+        editor = lib.mkDefault false;
       };
 
       # Allow EFI variables to be modified.
@@ -14,28 +15,5 @@
 
       timeout = 10;
     };
-
-    plymouth = {
-      enable = true;
-      theme = "bgrt";
-    };
-
-    kernelPackages = pkgs.linuxPackages_latest;
-
-    initrd = {
-      # Enable systemd initrd.
-      systemd.enable = true;
-      # Disable verbose output.
-      verbose = false;
-    };
-
-    kernelParams = [
-      "quiet"
-      "udev.log_level=3"
-    ];
-
-    consoleLogLevel = 0;
-
-    tmp.cleanOnBoot = true;
   };
 }
