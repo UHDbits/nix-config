@@ -1,4 +1,4 @@
-# Nix configuration file to set settings and enable the systemd-boot bootloader.
+# Nix configuration file to configure and enable the systemd-boot bootloader.
 { lib, ... }:
 {
   boot = {
@@ -10,10 +10,9 @@
         editor = lib.mkDefault false;
       };
 
-      # Allow EFI variables to be modified.
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = lib.mkDefault true;
 
-      timeout = 10;
+      timeout = lib.mkDefault 10;
     };
   };
 }

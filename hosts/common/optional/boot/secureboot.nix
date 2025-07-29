@@ -2,11 +2,7 @@
 ###############################################################
 # Before using this module, make sure the system is prepared using the directions at:
 # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
-{
-  inputs,
-  lib,
-  ...
-}:
+{ inputs, lib, ... }:
 {
   imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
@@ -16,11 +12,13 @@
   # Enable Lanzaboote and set key location.
   boot.lanzaboote = {
     enable = lib.mkForce true;
-    pkiBundle = lib.mkForce "/var/lib/sbctl";
+    pkiBundle = "/var/lib/sbctl";
   };
 
   # Impermanence
-  /* environment.persistence = {
-    "/persist".directories = ["/var/lib/sbctl"];
-  }; */
+  /*
+    environment.persistence = {
+      "/persist".directories = ["/var/lib/sbctl"];
+    };
+  */
 }

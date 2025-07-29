@@ -1,8 +1,9 @@
 # Nix configuration file for default configurations applied globally.
 {
+  config,
   inputs,
   lib,
-  config,
+  pkgs,
   ...
 }:
 {
@@ -11,6 +12,8 @@
     ./locale.nix
     ./users/uhdbits/default.nix
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   system.rebuild.enableNg = true;
 
