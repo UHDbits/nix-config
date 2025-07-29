@@ -8,18 +8,16 @@
     pkgs.gnomeExtensions.accent-directories
     pkgs.gnomeExtensions.adw-gtk3-colorizer
     pkgs.gnomeExtensions.alphabetical-app-grid
-    pkgs.gnomeExtensions.alt-tab-current-monitor
     pkgs.gnomeExtensions.auto-accent-colour
     pkgs.gnomeExtensions.battery-time-2
     pkgs.gnomeExtensions.blur-my-shell # Double check configured settings
-    pkgs.gnomeExtensions.brightness-control-using-ddcutil # Compare to other ddcutil one
     pkgs.gnomeExtensions.burn-my-windows # Check how to configure through nix/home-manager
     pkgs.gnomeExtensions.caffeine # Check settings
     pkgs.gnomeExtensions.click-to-close-overview
     pkgs.gnomeExtensions.clipboard-indicator # Check excluded apps
     pkgs.gnomeExtensions.clipqr
     pkgs.gnomeExtensions.color-picker
-    pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil # Compare to other ddcutil one
+    pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
     pkgs.gnomeExtensions.custom-command-toggle # Add toggle maybe for ryzenadj/tlp or something else
     pkgs.gnomeExtensions.dash-to-dock
     pkgs.gnomeExtensions.easyScreenCast # Check performance and stuttering
@@ -42,7 +40,6 @@
         "accent-directories@taiwbi.com"
         "adw-gtk3-colorizer@NiffirgkcaJ.github.com"
         "AlphabeticalAppGrid@stuarthayhurst"
-        "alt-tab-current-monitor@esauvisky.github.io"
         "auto-accent-colour@Wartybix"
         "batterytime@typeof.pw"
         "blur-my-shell@aunetx"
@@ -59,6 +56,7 @@
         "fq@megh"
         "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
         "lilypad@shendrew.github.io"
+        "monitor-brightness-volume@ailin.nemui"
         "quicksettings-audio-devices-renamer@marcinjahn.com"
         "pip-on-top@rafostar.github.com"
         "quick-settings-audio-panel@rayzeq.github.io"

@@ -1,4 +1,4 @@
-# Nix configuration file for general GNOME settings.
+# Nix configuration file for general GNOME and GNOME app settings.
 { lib, pkgs, ... }:
 with lib.hm.gvariant;
 {
@@ -21,15 +21,25 @@ with lib.hm.gvariant;
 
   # Configure dconf settings.
   dconf.settings = with lib.hm.gvariant; {
-    # Input sources/keymap configuration
+    ## App Folders ##
+    "org/gnome/desktop/app-folders" = {
+      # Finish adding app folders
+      folder-children = [ "System" "Utilities" "FRC" ];
+    };
+
+    "org/gnome/desktop/app-folders/folders/FRC" = {
+      apps = [ "advantagescope.desktop" "choreo.desktop" "DataLogTool.desktop" "elastic-dashboard.desktop" "Glass.desktop" "OutlineViewer.desktop" "pathplanner.desktop" "roboRIOTeamNumberSetter.desktop" "SysId.desktop" "wpical.desktop" ];
+      name = "FRC";
+      translate = false;
+    };
+
+    ## General GNOME settings ##
     "org/gnome/desktop/input-sources" = {
       sources = [
-        # Normal US layout.
         (mkTuple [
           "xkb"
           "us"
         ])
-        # US Colemak layout.
         (mkTuple [
           "xkb"
           "us+colemak"
@@ -41,13 +51,12 @@ with lib.hm.gvariant;
       require-password = true;
     };
 
-    # Desktop interface configuration
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
+      cursor-theme = "Adwaita";
       enable-hot-corners = false;
-      locate-pointer = true;
       show-battery-percentage = true;
     };
 
@@ -78,7 +87,6 @@ with lib.hm.gvariant;
       lock-delay = 0;
     };
 
-    # Night light configuration
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
       night-light-schedule-automatic = false;
@@ -96,9 +104,36 @@ with lib.hm.gvariant;
       sleep-inactive-ac-timeout = 1200;
     };
 
-    # Geolocation settings (just disable)
+    "org/gnome/shell" = {
+      # Finish
+      favorite-apps = [ "firefox.desktop" "code.desktop" "org.gnome.Nautilus.desktop" ];
+    };
+
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = true;
+    };
+
+    "org/gnome/shell/keybindings" = {
+      switch-windows = [ "<Alt>Tab" ];
+      switch-windows-backward = [ "<Shift><Alt>Tab" ];
+    };
+
+    "org/gnome/shell/weather" = {
+      automatic-location = false;
+      locations = [ (mkVariant (mkTuple [ (mkUint32 2) (mkVariant (mkTuple [ "Phoenix" "KPHX" true [ (mkTuple [ (mkDouble "0.583536296811635") (mkDouble "-1.955660817467636") ]) ] [ (mkTuple [ (mkDouble "0.5837843080983434") (mkDouble "-1.9560609516519483") ]) ] ])) ])) ];
+    };
+
     "org/gnome/system/location" = {
       enabled = false;
+    };
+
+    ## App Settings ##
+    "org/gnome/Console" = {
+      ignore-scrollback-limit = true;
+    };
+
+    "org/gnome/Weather" = {
+      locations = [ (mkVariant (mkTuple [ (mkUint32 2) (mkVariant (mkTuple [ "Phoenix" "KPHX" true [ (mkTuple [ (mkDouble "0.583536296811635") (mkDouble "-1.955660817467636") ]) ] [ (mkTuple [ (mkDouble "0.5837843080983434") (mkDouble "-1.9560609516519483") ]) ] ])) ])) ];
     };
   };
 }

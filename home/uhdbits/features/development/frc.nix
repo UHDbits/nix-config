@@ -10,6 +10,7 @@
     pkgs.wpilib.roborioteamnumbersetter
     pkgs.wpilib.sysid
     pkgs.wpilib.wpilib-utility
+    pkgs.wpilib.wpical
 
     # AdvantageScope (log viewing utility)
     pkgs.advantagescope
