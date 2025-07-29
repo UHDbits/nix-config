@@ -75,15 +75,15 @@
     };
 
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
-      static-blur = false;
-    };
-
-    "org/gnome/shell/extensions/blur-my-shell/hidetopbar" = {
-      compatibility = false;
+      static-blur = true;
     };
 
     "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+      blur = true;
+      brightness = mkDouble "0.6";
+      sigma = 30;
       static-blur = false;
+      style-dash-to-dock = 0;
       unblur-in-overview = false;
     };
 
