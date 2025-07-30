@@ -2,21 +2,11 @@
 { lib, ... }:
 {
   boot = {
-    initrd = {
-      verbose = false;
+    loader = {
+      efi.canTouchEfiVariables = lib.mkDefault true;
+      timeout = lib.mkDefault 10;
     };
 
-    kernelParams = [
-      "quiet"
-      "splash"
-      "udev.log_level=3"
-    ];
-
-    plymouth = {
-      enable = true;
-      theme = "bgrt";
-    };
-
-    tmp.cleanOnBoot = true;
+    tmp.cleanOnBoot = lib.mkDefault true;
   };
 }

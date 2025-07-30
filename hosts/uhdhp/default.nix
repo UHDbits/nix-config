@@ -36,6 +36,7 @@
     ../common/optional/hardware/peripherals/printing.nix
 
     # Common UEFI imports to customize the bootloader and enable secure boot.
+    ../common/optional/boot/quietboot.nix
     ../common/optional/boot/systemd-boot.nix
     ../common/optional/boot/secureboot.nix
 
