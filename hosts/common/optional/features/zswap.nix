@@ -1,5 +1,9 @@
 # Nix configuration file to setup zswap.
 {
+  boot.initrd.availableKernelModules = [ "lz4" ];
+
+  boot.initrd.systemd.enable = true;
+  
   boot.kernel.sysctl = {
     "vm.swappiness" = 15;
   };
