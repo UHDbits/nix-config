@@ -19,7 +19,6 @@
     ../common/optional/features/flatpak.nix
     ../common/optional/features/zswap.nix
     ../common/optional/features/desktop/chromium.nix
-    ../common/optional/features/desktop/warp.nix
     ../common/optional/features/desktop/dewm/gnome.nix
 
     # Common hardware imports to improve AMD CPU/GPU support.
