@@ -1,10 +1,7 @@
 # Nix configuration file to set locale settings.
 {
   # Set time settings.
-  time = {
-    # Set my time zone.
-    timeZone = "America/Phoenix";
-  };
+  time.timeZone = "America/Phoenix";
 
   # Select internationalisation properties.
   i18n = {

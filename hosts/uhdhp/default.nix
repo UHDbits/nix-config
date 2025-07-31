@@ -14,6 +14,7 @@
     ./ryzenadj.nix
     ./tlp.nix
     ../common/global
+    ../common/users/uhdbits.nix
     ../common/optional/features/fish.nix
     ../common/optional/features/flatpak.nix
     ../common/optional/features/zswap.nix
@@ -35,6 +36,7 @@
     ../common/optional/hardware/ssd.nix
     ../common/optional/hardware/peripherals/fingerprint.nix
     ../common/optional/hardware/peripherals/printing.nix
+    ../common/optional/hardware/tpm2.nix
 
     # Common UEFI imports to customize the bootloader and enable secure boot.
     ../common/optional/boot/quietboot.nix
@@ -81,9 +83,6 @@
   boot.extraModulePackages = [ ];
 
   hardware.i2c.enable = true;
-  security.tpm2.enable = true;
-  security.tpm2.pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
-  security.tpm2.tctiEnvironment.enable = true;
   services.fwupd.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
