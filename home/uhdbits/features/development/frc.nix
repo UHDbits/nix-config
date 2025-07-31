@@ -16,7 +16,7 @@
     pkgs.advantagescope
 
     # Choreo and PathPlanner (Pathplanning Utilities)
-    pkgs.choreo
+    # pkgs.choreo
     pkgs.pathplanner
 
     # Elastic Dashboard
