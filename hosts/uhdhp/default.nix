@@ -16,6 +16,7 @@
     ../common/global
     ../common/optional/features/fish.nix
     ../common/optional/features/flatpak.nix
+    ../common/optional/features/zswap.nix
     ../common/optional/features/desktop/chromium.nix
     ../common/optional/features/desktop/warp.nix
     ../common/optional/features/desktop/dewm/gnome.nix
@@ -30,8 +31,8 @@
     ../common/optional/hardware/laptop/tlp.nix
 
     # Other miscellaneous common hardware related imports.
-    ../common/optional/hardware/sound
-    ../common/optional/hardware/ssd
+    ../common/optional/hardware/sound.nix
+    ../common/optional/hardware/ssd.nix
     ../common/optional/hardware/peripherals/fingerprint.nix
     ../common/optional/hardware/peripherals/printing.nix
 
