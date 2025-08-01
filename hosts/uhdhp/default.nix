@@ -17,6 +17,7 @@
     ../common/users/uhdbits.nix
     ../common/optional/features/fish.nix
     ../common/optional/features/flatpak.nix
+    ../common/optional/features/security.nix
     ../common/optional/features/zswap.nix
     ../common/optional/features/desktop/chromium.nix
     ../common/optional/features/desktop/dewm/gnome.nix

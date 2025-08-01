@@ -5,11 +5,7 @@ with lib.hm.gvariant;
   # Configure GTK theming and configuration.
   gtk = {
     enable = true;
-    theme = {
-      name = lib.mkDefault "Adwaita-dark";
-      package = lib.mkDefault pkgs.gnome-themes-extra;
-    };
-
+    
     gtk3 = {
       enable = true;
       theme = {
