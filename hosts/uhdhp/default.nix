@@ -82,9 +82,25 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  documentation.man.generateCaches = false;
   hardware.i2c.enable = true;
+  hardware.keyboard.qmk.enable = true;
+  hardware.logitech.wireless.enable = true;
+  hardware.usbStorage.manageShutdown = true;
   services.fwupd.enable = true;
   services.ddccontrol.enable = true;
+  programs.adb.enable = true;
+  programs.appimage.enable = true;
+  programs.bat.enable = true;
+  programs.command-not-found.enable = true;
+  programs.direnv.enable = true;
+  programs.gpu-screen-recorder.enable = true;
+  programs.goldwarden.enable = true;
+  programs.htop.enable = true;
+  programs.localsend.enable = true;
+  programs.obs-studio.enable = true;
+  programs.screen.enable = true;
+  programs.vivid.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

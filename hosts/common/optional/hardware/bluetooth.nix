@@ -1,0 +1,1 @@
+# Nix configuration file to configure Bluetooth.
