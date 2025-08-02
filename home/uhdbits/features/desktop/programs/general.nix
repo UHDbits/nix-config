@@ -8,7 +8,8 @@
     pkgs.lm_sensors
     pkgs.imagemagick
     pkgs.jdk21
-    pkgs.gitkraken  
+    pkgs.gitkraken
+    pkgs.nh
   ];
 
   programs.nix-index.enable = true;

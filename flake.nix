@@ -1,10 +1,12 @@
 # Nix configuration file for a flake-based configuration.
 {
-  description = "Personal NixOS configuration made by UHDbits/Ashton A.";
+  description = "Personal NixOS and Home Manager configuration made by UHDbits/Ashton A.";
 
   # Inputs, the dependencies (online or local) of this flake.
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
+
+    nixpkgs-stable.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-25.05";
 
     disko = {
       url = "github:nix-community/disko";
@@ -34,26 +36,32 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
+  # Outputs, what the flake creates.
   outputs =
     { self, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
-      # Supported systems for your flake packages, shell, etc.
+
+      # Compatible systems with this flake.
       systems = [
         "aarch64-linux"
-        "i686-linux"
         "x86_64-linux"
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
+
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
-      # Main formatter for this code, accessible through "nix fmt"
+      # Main formatter for this code, accessible through "nix fmt".
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
 
       nixosConfigurations = {

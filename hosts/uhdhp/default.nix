@@ -55,6 +55,8 @@
   #  };
   #};
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # TODO: Set your hostname
   networking.hostName = "uhdhp";
 
@@ -109,5 +111,5 @@
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  Platform = lib.mkDefault "x86_64-linux";
 }

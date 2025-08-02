@@ -2,9 +2,9 @@
 { lib, ... }:
 {
   boot.loader.systemd-boot = {
-      enable = true;
-      
-      configurationLimit = lib.mkDefault 5;
-      editor = lib.mkDefault false;
-    };
+    enable = true;
+
+    configurationLimit = lib.mkDefault 5;
+    editor = lib.mkDefault false;
+  };
 }

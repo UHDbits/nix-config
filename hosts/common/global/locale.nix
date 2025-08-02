@@ -1,7 +1,8 @@
 # Nix configuration file to set locale settings.
+{ lib, ... }:
 {
   # Set time settings.
-  time.timeZone = "America/Phoenix";
+  time.timeZone = lib.mkDefault "America/Phoenix";
 
   # Select internationalisation properties.
   i18n = {

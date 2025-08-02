@@ -1,5 +1,4 @@
 # Nix configuration file to configure quiet boot settings.
-{ lib, ... }:
 {
   boot = {
     initrd = {
