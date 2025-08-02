@@ -6,6 +6,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     frc-nix = {
       url = "github:frc4451/frc-nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,8 +21,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    impermanence.url = "github:nix-community/impermanence";
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nand2tetris = {
+      url = "github:0x5a4/nand2tetris-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

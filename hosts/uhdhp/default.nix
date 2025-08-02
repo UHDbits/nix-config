@@ -92,7 +92,6 @@
   programs.adb.enable = true;
   programs.appimage.enable = true;
   programs.bat.enable = true;
-  programs.command-not-found.enable = true;
   programs.direnv.enable = true;
   programs.gpu-screen-recorder.enable = true;
   programs.goldwarden.enable = true;

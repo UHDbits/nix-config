@@ -10,4 +10,6 @@
     pkgs.jdk21
     pkgs.gitkraken  
   ];
+
+  programs.nix-index.enable = true;
 }
