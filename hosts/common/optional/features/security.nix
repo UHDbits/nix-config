@@ -2,6 +2,4 @@
 { lib, ... }:
 {
   security.protectKernelImage = lib.mkDefault true;
-  security.audit.enable = true;
-  security.auditd.enable = true;
 }
