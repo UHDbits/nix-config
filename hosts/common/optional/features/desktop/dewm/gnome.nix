@@ -2,12 +2,12 @@
 { pkgs, ... }:
 {
   services = {
+    desktopManager.gnome.enable = true;
+    
     displayManager.gdm = {
       enable = true;
       wayland = true;
     };
-
-    desktopManager.gnome.enable = true;
   };
 
   # Temporarily fix fast login Authentication Failure (https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229)

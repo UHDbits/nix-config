@@ -1,8 +1,8 @@
 # Nix configuration file to setup zswap.
 { lib, ... }:
 {
+  # Add lz4 for the default compressor.
   boot.initrd.availableKernelModules = [ "lz4" ];
-
   boot.initrd.systemd.enable = true;
   
   boot.kernel.sysctl = {
