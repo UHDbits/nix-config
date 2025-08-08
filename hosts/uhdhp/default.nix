@@ -111,5 +111,5 @@
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
-  Platform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
