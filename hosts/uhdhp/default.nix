@@ -102,7 +102,13 @@
   programs.obs-studio.enable = true;
   programs.screen.enable = true;
   programs.vivid.enable = true;
-
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [ libGL
+    libglvnd
+    xorg.libX11
+    stdenv.cc.cc.lib ];
+  };
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
