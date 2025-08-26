@@ -17,7 +17,7 @@
 
     # Choreo and PathPlanner (Pathplanning Utilities)
     # pkgs.choreo
-    pkgs.pathplanner
+    # pkgs.pathplanner
 
     # Elastic Dashboard
     pkgs.elastic-dashboard
