@@ -66,9 +66,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Install GnuPG
-  programs.gnupg.agent.enable = true;
-
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs pkgs; };
     users = {
@@ -88,16 +85,12 @@
   boot.extraModulePackages = [ ];
 
   documentation.man.generateCaches = false;
-  hardware.keyboard.qmk.enable = true;
   hardware.logitech.wireless.enable = true;
   hardware.usbStorage.manageShutdown = true;
   services.fwupd.enable = true;
-  services.ddccontrol.enable = true;
   programs.bat.enable = true;
-  programs.direnv.enable = true;
   programs.gpu-screen-recorder.enable = true;
   programs.goldwarden.enable = true;
-  programs.htop.enable = true;
   programs.localsend.enable = true;
   programs.obs-studio.enable = true;
   programs.nix-ld = {
