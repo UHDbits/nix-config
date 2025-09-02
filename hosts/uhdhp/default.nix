@@ -84,9 +84,6 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  documentation.man.generateCaches = false;
-  hardware.logitech.wireless.enable = true;
-  hardware.usbStorage.manageShutdown = true;
   services.fwupd.enable = true;
   programs.bat.enable = true;
   programs.gpu-screen-recorder.enable = true;
