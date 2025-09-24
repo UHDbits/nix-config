@@ -11,8 +11,7 @@
   # You can import other NixOS modules here
   imports = [
     ./filesystem.nix
-    ./ryzenadj.nix
-    ./tlp.nix
+    ./powermanagement
     ../common/global
     ../common/users/uhdbits.nix
     ../common/optional/features/adb.nix
@@ -88,7 +87,6 @@
   services.fwupd.enable = true;
   programs.bat.enable = true;
   programs.gpu-screen-recorder.enable = true;
-  programs.goldwarden.enable = true;
   programs.localsend.enable = true;
   programs.obs-studio.enable = true;
   programs.nix-ld = {

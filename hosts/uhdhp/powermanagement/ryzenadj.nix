@@ -1,4 +1,4 @@
-# Nix configuration file to set RyzenAdj settings for the ProBook.
+# Nix module to set RyzenAdj settings for the ProBook.
 { pkgs, ... }:
 let
   # These values will be set if the computer is on AC power (plugged in).
@@ -18,7 +18,6 @@ let
   apu-skin-temp-bat = 45;
 
   # Create commands to run on AC and battery.
-  # We run ryzenadj twice, one to set the power-saving/max-performance, and again to set our custom settings, to prevent power-saving/max-performance from overwriting any of our settings (mainly slow-time).
   ryzenadj-ac-command = "${pkgs.ryzenadj}/bin/ryzenadj --max-performance --stapm-limit=${toString stapm-limit-ac} --fast-limit=${toString fast-limit-ac} --slow-limit=${toString slow-limit-ac} --slow-time=${toString slow-time-ac} --stapm-time=${toString stapm-time-ac} --apu-skin-temp=${toString apu-skin-temp-ac}";
   ryzenadj-bat-command = "${pkgs.ryzenadj}/bin/ryzenadj --power-saving --stapm-limit=${toString stapm-limit-bat} --fast-limit=${toString fast-limit-bat} --slow-limit=${toString slow-limit-bat} --slow-time=${toString slow-time-bat} --stapm-time=${toString stapm-time-bat} --apu-skin-temp=${toString apu-skin-temp-bat}";
 
@@ -33,11 +32,17 @@ let
   };
 in
 {
-  # Enable "ryzen-smc" to prevent accessing /dev/mem.
-  hardware.cpu.amd.ryzen-smu.enable = true;
+  # Create environment shell aliases to set the power levels.
+  environment.shellAliases = {
+    ryzenadj-ac = "sudo " + ryzenadj-ac-command;
+    ryzenadj-bat = "sudo " + ryzenadj-bat-command;
+  };
 
   # Add "ryzenadj" to the system packages list.
   environment.systemPackages = [ pkgs.ryzenadj ];
+
+  # Enable "ryzen-smc" to prevent accessing /dev/mem.
+  hardware.cpu.amd.ryzen-smu.enable = true;
 
   # Add the "60-ryzenadj.rules" file to the udev packages.
   services.udev.packages = [ ryzenadj-udev ];

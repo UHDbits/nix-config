@@ -1,4 +1,4 @@
-# Nix configuration file to set tlp settings for the ProBook.
+# Nix module to set tlp settings for the ProBook.
 {
   services.tlp.settings = {
     # Audio power settings.
