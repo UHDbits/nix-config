@@ -12,8 +12,6 @@
     ./locale.nix
   ];
 
-  system.rebuild.enableNg = true;
-
   # Setup nixpkgs
   nixpkgs = {
     overlays = [ inputs.frc-nix.overlays.default ];
