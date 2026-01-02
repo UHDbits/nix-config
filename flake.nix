@@ -37,6 +37,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   # Outputs, what the flake creates.
@@ -65,6 +67,15 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/uhdhp ];
         };
+
+        # Secondary system, 2020 Intel MacBook Air
+        uhdair = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs ; };
+          modules = [
+            ./hosts/uhdair
+            nixos-hardware.nixosModules
+          ];
+        }
       };
     };
 }
