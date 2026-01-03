@@ -9,5 +9,6 @@
     ./features/desktop/programs/general.nix
     ./features/desktop/dewm/gnome
     ./features/desktop/fonts.nix
+    ./features/development/vscode.nix
   ];
 }
