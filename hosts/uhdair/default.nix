@@ -11,6 +11,7 @@
   # You can import other NixOS modules here
   imports = [
     ./hardware-configuration.nix
+    ./tlp.nix
 
     ../common/global
     ../common/users/uhdbits.nix
@@ -46,7 +47,6 @@
       uhdbits = import ../../home/uhdbits/uhdair.nix;
     };
   };
-
 
   nix.settings = {
     substituters = [ "https://cache.soopy.moe" ];
