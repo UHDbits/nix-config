@@ -73,9 +73,9 @@
           specialArgs = { inherit inputs outputs ; };
           modules = [
             ./hosts/uhdair
-            nixos-hardware.nixosModules
+            inputs.nixos-hardware.nixosModules.apple-t2
           ];
-        }
+        };
       };
     };
 }

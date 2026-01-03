@@ -10,6 +10,8 @@
 {
   # You can import other NixOS modules here
   imports = [
+    ./hardware-configuration.nix
+
     ../common/global
     ../common/users/uhdbits.nix
     ../common/optional/features/adb.nix
@@ -51,8 +53,6 @@
     trusted-substituters = [ "https://cache.soopy.moe" ];
     trusted-public-keys = [ "cache.soopy.moe-1:0RZVsQeR+GOh0VQI9rvnHz55nVXkFardDqfm4+afjPo=" ];
   };
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "uhdair";
 
