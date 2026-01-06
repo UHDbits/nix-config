@@ -41,6 +41,28 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  ##### Disk configuration #####
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/mbanixos";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/MBABOOT";
+    fsType = "vfat";
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
+  };
+
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 4096;
+    }
+  ];
+
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs pkgs; };
     users = {
