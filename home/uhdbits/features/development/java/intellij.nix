@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.jetbrains.idea-ultimate ];
+  home.packages = [ pkgs.jetbrains.idea ];
 }
