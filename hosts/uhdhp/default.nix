@@ -22,7 +22,7 @@
     ../common/optional/features/security.nix
     ../common/optional/features/zswap.nix
     ../common/optional/features/desktop/chromium.nix
-    ../common/optional/features/desktop/dewm/gnome.nix
+    ../common/optional/features/desktop/dewm/cosmic.nix
 
     # Common hardware imports to improve AMD CPU/GPU support.
     ../common/optional/hardware/cpu/amd
