@@ -2,6 +2,7 @@
 {
   inputs,
   lib,
+  username,
   ...
 }:
 {
@@ -32,7 +33,7 @@
         nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
         # Build caching settings
-        trusted-users = [ "uhdbits" ];
+        trusted-users = [ "${username}" ];
         substituters = [
           "https://nix-community.cachix.org"
           "https://attic.xuyh0120.win/lantian"

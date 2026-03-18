@@ -50,6 +50,7 @@
   outputs =
     { self, nixpkgs, ... }@inputs:
     let
+      username = "uhdbits";
       inherit (self) outputs;
 
       # Compatible systems with this flake.
@@ -69,7 +70,7 @@
       nixosConfigurations = {
         # My main system, HP ProBook 445 G9
         uhdhp = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs outputs username; };
           modules = [ ./hosts/uhdhp ];
         };
       };
