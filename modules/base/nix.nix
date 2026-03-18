@@ -6,6 +6,13 @@
 }:
 {
   nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+
+    # Build caching settings
+    trusted-users = [ "uhdbits" ];
     substituters = [
       "https://nix-community.cachix.org"
       "https://attic.xuyh0120.win/lantian"

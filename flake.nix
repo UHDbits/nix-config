@@ -40,8 +40,13 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }
   };
 
+  # Outputs, what the flake creates.
   outputs =
     { self, nixpkgs, ... }@inputs:
     let
