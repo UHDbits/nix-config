@@ -5,4 +5,6 @@
     enable = true;
     powerOnBoot = lib.mkDefault false;
   };
+
+  services.blueman.enable = lib.mkDefault true;
 }
