@@ -1,8 +1,18 @@
 # Nix configuration file for a flake-based configuration.
 {
+  description = "Personal NixOS and Home Manager configuration made by UHDbits/Ashton A.";
+
   # Inputs, the dependencies (online or local) of this flake.
   inputs = {
-    frc-nix.url = {
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    frc-nix = {
       url = "github:frc4451/frc-nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -18,7 +28,17 @@
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable?shallow=1";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master?shallow=1";
+    nur = {
+      url = "github:nix-community/NUR?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    inputs.sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
