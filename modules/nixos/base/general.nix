@@ -1,0 +1,3 @@
+{
+  hardware.usbStorage.manageShutdown = true;
+}

@@ -30,6 +30,7 @@
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nixos-hardware.url = "github:NixOS/nixos-hardware?shallow=1";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable?shallow=1";
     nixpkgs-master.url = "github:nixos/nixpkgs/master?shallow=1";
     nur = {
