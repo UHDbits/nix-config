@@ -36,9 +36,37 @@
       url = "github:nix-community/NUR?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    inputs.sops-nix = {
+    sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    let
+      inherit (self) outputs;
+
+      # Compatible systems with this flake.
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      # Main formatter for this code, accessible through "nix fmt".
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
+
+      nixosConfigurations = {
+        # My main system, HP ProBook 445 G9
+        uhdhp = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/uhdhp ];
+        };
+      };
+    };
 }
