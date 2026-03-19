@@ -1,9 +1,9 @@
 # NixOS configuration file for AMD GPUs.
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.nixos-hardware.common-gpu-amd
   ];
 
-  hardware.graphics.extraPackages = [ pkgs.rocmPackages.clr.icd ];
+  hardware.amdgpu.opencl.enable = true;
 }
