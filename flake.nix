@@ -8,10 +8,6 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     frc-nix = {
       url = "github:frc4451/frc-nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
