@@ -8,5 +8,5 @@
       enable = true;
       wayland = true;
     };
-  }
+  };
 }

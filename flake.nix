@@ -40,7 +40,7 @@
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-    }
+    };
   };
 
   # Outputs, what the flake creates.
@@ -65,10 +65,9 @@
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
 
       nixosConfigurations = {
-        # My main system, HP ProBook 445 G9
-        uhdhp = nixpkgs.lib.nixosSystem {
+        uhdair = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs username; };
-          modules = [ ./hosts/uhdhp ];
+          modules = [ ./hosts/uhdair ];
         };
       };
     };
