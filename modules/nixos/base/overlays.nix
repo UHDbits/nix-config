@@ -1,4 +1,5 @@
 { inputs, ... }:
 {
-  nixpkgs.overlays = [ inputs.frc-nix.overlays.default ];
+  nixpkgs.overlays = [ inputs.frc-nix.overlays.default
+    inputs.nix-cachyos-kernel.overlays.default ];
 }

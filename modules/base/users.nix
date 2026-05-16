@@ -6,5 +6,5 @@
     extraGroups = [ "wheel" ];
     isNormalUser = true;
     shell = pkgs.fish;
-  }
+  };
 }
