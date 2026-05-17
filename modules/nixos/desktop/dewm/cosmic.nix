@@ -3,6 +3,6 @@
 {
   services = {
     desktopManager.cosmic.enable = true;
-    displayManager.cosmic-greeter = lib.mkDefault true;
+    displayManager.cosmic-greeter.enable = lib.mkDefault true;
   };
 }

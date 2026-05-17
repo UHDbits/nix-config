@@ -13,6 +13,22 @@
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   programs.fish.enable = true;
+  programs.git.enable = true;
+  programs.gnupg.agent.enable = true;
+
+  # Kernel parameters to fix suspend
+  boot.kernelParams = [
+    "i915.enable_guc=2"
+    "intel_iommu=on"
+    "iommu=pt"
+    "mem_sleep_default=s2idle"
+    "pcie_aspm=off"
+    "pcie_ports=compat"
+  ];
+
+  systemd.sleep.settings.Sleep = {
+    SuspendState = "freeze";
+  };
 
   # temp boot config
   boot.loader.systemd-boot = {

@@ -16,6 +16,11 @@
       # Disable channels
       channel.enable = false;
 
+      # Make flake registry and nix path match flake inputs
+        registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+        nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+
+
       # General settings
       settings = {
         auto-optimise-store = true;
@@ -28,9 +33,6 @@
 
         # Disable global flake registry
         flake-registry = "";
-        # Make flake registry and nix path match flake inputs
-        registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-        nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
         # Build caching settings
         trusted-users = [ "${username}" ];
