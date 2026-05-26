@@ -5,6 +5,7 @@
     description = "Ashton A.";
     extraGroups = [ "wheel" ];
     isNormalUser = true;
+    initialPassword = "initial";
     shell = pkgs.fish;
   };
 }

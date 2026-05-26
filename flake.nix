@@ -45,7 +45,7 @@
 
   # Outputs, what the flake creates.
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { self, nixpkgs, impermanence, ... }@inputs:
     let
       username = "uhdbits";
       inherit (self) outputs;
@@ -67,7 +67,10 @@
       nixosConfigurations = {
         uhdair = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs username; };
-          modules = [ ./hosts/uhdair ];
+          modules = [ 
+            impermanence.nixosModules.impermanence
+            ./hosts/uhdair 
+            ];
         };
       };
     };

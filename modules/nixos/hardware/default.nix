@@ -47,10 +47,4 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
-
-  # Wireless/WiFi settings
-  networking.wireless = {
-    enable = lib.mkDefault false;
-    iwd.enable = lib.mkDefault true;
-  };
 }
