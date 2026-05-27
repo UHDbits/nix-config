@@ -41,11 +41,15 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    t2fancontrol = {
+      url = "github:GnomedDev/T2FanRD";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Outputs, what the flake creates.
   outputs =
-    { self, nixpkgs, impermanence, ... }@inputs:
+    { self, nixpkgs, impermanence, t2fancontrol, ... }@inputs:
     let
       username = "uhdbits";
       inherit (self) outputs;
@@ -67,9 +71,10 @@
       nixosConfigurations = {
         uhdair = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs username; };
-          modules = [ 
+          modules = [
             impermanence.nixosModules.impermanence
-            ./hosts/uhdair 
+            t2fancontrol.nixosModules.t2fanrd
+            ./hosts/uhdair
             ];
         };
       };

@@ -10,7 +10,7 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
+    device = "/dev/disk/by-label/NixOS";
     fsType = "btrfs";
     options = [
       "compress=zstd"

@@ -16,6 +16,18 @@
   programs.git.enable = true;
   programs.gnupg.agent.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    firefox
+    antigravity
+    zed-editor
+    gitkraken
+  ];
+
+  services.t2fanrd = {
+    enable = true;
+    config.Fan1.always_full_speed = true;
+  };
+
   # Kernel parameters to fix suspend
   boot.kernelParams = [
     "i915.enable_guc=2"
