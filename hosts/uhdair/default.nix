@@ -23,10 +23,25 @@
     gitkraken
   ];
 
+  # Fan control service
   services.t2fanrd = {
     enable = true;
     config.Fan1.always_full_speed = true;
   };
+
+  # WiFi/BT firmware
+  hardware.firmware = [
+      (pkgs.stdenvNoCC.mkDerivation (final: {
+        name = "brcm-firmware";
+        src = ./firmware.tar.gz;
+
+        dontUnpack = true;
+        installPhase = ''
+          mkdir -p $out/lib/firmware/brcm
+          tar -xf ${final.src} -C $out/lib/firmware/brcm
+        '';
+      }))
+    ];
 
   # Kernel parameters to fix suspend
   boot.kernelParams = [
