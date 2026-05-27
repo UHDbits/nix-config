@@ -1,9 +1,9 @@
-{ lib, ... }: 
+{ lib, ... }:
 let
   clearScript = ''
     # Mount btrfs subvolume
     mkdir -p /btrfs_tmp
-    mount -o subvol=/ /dev/disk/by-label/NixOS /btrfs_tmp
+    mount -o subvol=/ -t btrfs /dev/disk/by-label/NixOS /btrfs_tmp
 
     delete_subvolume_recursively() {
       IFS=$'\n'
@@ -12,6 +12,11 @@ let
           done
           btrfs subvolume delete "$1"
     }
+
+    # Delete old root subvolume recursively if it exists
+    if [ -e /btrfs_tmp/root ]; then
+        delete_subvolume_recursively /btrfs_tmp/root
+    fi
 
     # Create new subvolume
     btrfs subvolume create /btrfs_tmp/root
@@ -49,13 +54,20 @@ in
         ];
       };
 
+  environment.persistence."/persist".users.uhdbits = {
+    directories = [
+      "nix-config"
+    ];
+  };
+
   boot.initrd = {
     supportedFilesystems = [ "btrfs" ];
 
     systemd.services.rollback = {
             description = "Rollback btrfs root subvolume to pristine state";
             wantedBy = [ "initrd.target" ];
-            after = [ "systemd-cryptsetup@cryptroot.service" ];
+            requires = [ "dev-disk-by\\x2dlabel-NixOS.device" ];
+            after = [ "dev-disk-by\\x2dlabel-NixOS.device" ];
             before = [ "sysroot.mount" ];
             unitConfig.DefaultDependencies = "no";
             serviceConfig.Type = "oneshot";
