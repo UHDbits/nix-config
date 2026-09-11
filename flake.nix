@@ -4,47 +4,54 @@
 
   # Inputs, the dependencies (online or local) of this flake.
   inputs = {
-    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-
-    nixpkgs-stable.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-25.05";
-
-    disko = {
-      url = "github:nix-community/disko";
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     frc-nix = {
       url = "github:frc4451/frc-nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    impermanence.url = "github:nix-community/impermanence";
-
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.3";
+      url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
+    nixos-hardware.url = "github:NixOS/nixos-hardware?shallow=1";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable?shallow=1";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master?shallow=1";
+    nur = {
+      url = "github:nix-community/NUR?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    t2fancontrol = {
+      url = "github:GnomedDev/T2FanRD";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Outputs, what the flake creates.
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { self, nixpkgs, impermanence, t2fancontrol, ... }@inputs:
     let
+      username = "uhdbits";
       inherit (self) outputs;
 
       # Compatible systems with this flake.
@@ -62,19 +69,13 @@
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
 
       nixosConfigurations = {
-        # My main system, HP ProBook 445 G9
-        uhdhp = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/uhdhp ];
-        };
-
-        # Secondary system, 2020 Intel MacBook Air
         uhdair = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs ; };
+          specialArgs = { inherit inputs outputs username; };
           modules = [
+            impermanence.nixosModules.impermanence
+            t2fancontrol.nixosModules.t2fanrd
             ./hosts/uhdair
-            inputs.nixos-hardware.nixosModules.apple-t2
-          ];
+            ];
         };
       };
     };
