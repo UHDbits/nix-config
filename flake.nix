@@ -1,15 +1,24 @@
-# Nix configuration file for a flake-based configuration.
 {
-  description = "Personal NixOS and Home Manager configuration made by UHDbits/Ashton A.";
+  description = "NixOS configuration by Ashton A.";
 
-  # Inputs, the dependencies (online or local) of this flake.
+  nixConfig = {
+    extra-substituters = [
+      "https://attic.xuyh0120.win/lantian"
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
-    agenix = {
-      url = "github:ryantm/agenix";
+    codex-desktop-linux = {
+      url = "github:ilysenko/codex-desktop-linux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    frc-nix = {
-      url = "github:frc4451/frc-nix/main";
+    helium = {
+      url = "github:oxcl/nix-flake-helium-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -20,62 +29,55 @@
       url = "github:nix-community/impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    nixos-hardware.url = "github:NixOS/nixos-hardware?shallow=1";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable?shallow=1";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master?shallow=1";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/v5.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
-      url = "github:nix-community/NUR?shallow=1";
+      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    t2fancontrol = {
+    t2fanrd = {
       url = "github:GnomedDev/T2FanRD";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  # Outputs, what the flake creates.
   outputs =
-    { self, nixpkgs, impermanence, t2fancontrol, ... }@inputs:
+    inputs@{ nixpkgs, ... }:
     let
-      username = "uhdbits";
-      inherit (self) outputs;
-
-      # Compatible systems with this flake.
-      systems = [
-        "aarch64-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+      system = "x86_64-linux";
+      lib = import ./lib { inherit (nixpkgs) lib; };
+      specialArgs = {
+        inherit inputs;
+        inherit (lib) scanPaths;
+      };
     in
     {
-      # Main formatter for this code, accessible through "nix fmt".
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
-
       nixosConfigurations = {
         uhdair = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs username; };
+          inherit system specialArgs;
           modules = [
-            impermanence.nixosModules.impermanence
-            t2fancontrol.nixosModules.t2fanrd
+            ./modules/base/common.nix
             ./hosts/uhdair
-            ];
+          ];
+        };
+        uhdflow = nixpkgs.lib.nixosSystem {
+          inherit system specialArgs;
+          modules = [
+            ./modules/base/common.nix
+            ./hosts/uhdflow
+          ];
         };
       };
     };
