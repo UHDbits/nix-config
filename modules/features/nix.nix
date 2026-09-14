@@ -1,7 +1,5 @@
 { inputs, ... }:
 {
-  imports = [ inputs.nix-index-database.nixosModules.default ];
-
   nix = {
     channel.enable = false;
     nixPath = [ "nixpkgs=flake:nixpkgs" ];
@@ -31,10 +29,5 @@
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
-  };
-
-  programs = {
-    nix-index.enable = true;
-    nix-index-database.enable = true;
   };
 }
