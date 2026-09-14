@@ -1,7 +1,12 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  scanPaths,
+  ...
+}:
 {
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs scanPaths; };
     useGlobalPkgs = true;
     useUserPackages = true;
     users.uhdbits = import ../../home/uhdbits.nix;
