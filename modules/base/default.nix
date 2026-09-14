@@ -8,7 +8,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModules.impermanence
   ]
-  ++ builtins.filter (path: path != ./common.nix) (scanPaths ./.)
+  ++ scanPaths ./.
   ++ scanPaths ../features;
 
   hardware.enableRedistributableFirmware = true;
