@@ -68,14 +68,14 @@
         uhdair = nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
-            ./modules/base/common.nix
+            ./modules/base
             ./hosts/uhdair
           ];
         };
         uhdflow = nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
-            ./modules/base/common.nix
+            ./modules/base
             ./hosts/uhdflow
           ];
         };
