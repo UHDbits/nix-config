@@ -6,9 +6,8 @@
   desktop = "cosmic";
   secureBoot.enable = false;
   storage = {
-    # Replace with this laptop's stable partition IDs before installation.
     bootDevice = "/dev/disk/by-label/EFI";
-    device = "/dev/disk/by-label/NixOS";
+    device = "/dev/disk/by-uuid/a22dde1c-56df-4aff-9945-4d3b82615287";
     enable = true;
     impermanence.enable = true;
     luks = {

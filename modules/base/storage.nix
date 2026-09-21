@@ -118,6 +118,8 @@ in
         fsType = "btrfs";
         options = [
           "noatime"
+          "nodatacow"
+          "nodatasum"
           "subvol=swap"
         ];
       };
