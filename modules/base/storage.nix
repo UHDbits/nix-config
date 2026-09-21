@@ -261,7 +261,11 @@ in
         delete_tree "$root" root
         btrfs subvolume create "$root"
       '';
-      serviceConfig.Type = "oneshot";
+      serviceConfig = {
+        # Later mount transactions must not rotate an already-mounted root again.
+        RemainAfterExit = true;
+        Type = "oneshot";
+      };
       unitConfig.DefaultDependencies = "no";
     };
   };
