@@ -1,64 +1,51 @@
-# NixOS configuration file for generated hardware configuration parameters for UHDair.
-{ lib, ... }:
 {
-  boot.initrd.availableKernelModules = [ "nvme" ];
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-    options = [ "umask=0077" ];
-  };
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/NixOS";
-    fsType = "btrfs";
-    options = [
-      "compress=zstd"
-      "noatime"
-      "subvol=root"
-    ];
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-label/NixOS";
-    fsType = "btrfs";
-    neededForBoot = true;
-    options = [
-      "compress=zstd"
-      "noatime"
-      "subvol=nix"
-    ];
-  };
-
-  fileSystems."/persist" = {
-    device = "/dev/disk/by-label/NixOS";
-    fsType = "btrfs";
-    neededForBoot = true;
-    options = [
-      "compress=zstd"
-      "noatime"
-      "subvol=persist"
-    ];
-  };
-
-
-  fileSystems."/.swap" = {
-    device = "/dev/disk/by-label/NixOS";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "nodatacow"
-      "nodatasum"
-      "subvol=swap"
-    ];
-  };
-
-  swapDevices = [
-    {
-      device = "/.swap/swapfile";
-      size = 8192;
-    }
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  boot = {
+    initrd.availableKernelModules = [
+      "nvme"
+      "sd_mod"
+      "usb_storage"
+      "xhci_pci"
+    ];
+    initrd.kernelModules = [
+      "t2bce_audio"
+      "t2bce_core"
+      "t2bce_vhci"
+    ];
+    kernelParams = [
+      "i915.enable_guc=2"
+      "intel_iommu=on"
+      "iommu=pt"
+      "mem_sleep_default=s2idle"
+      "pcie_aspm=off"
+      "pcie_ports=compat"
+      "pm_async=off"
+    ];
+  };
+  systemd.sleep.settings.Sleep.SuspendState = "freeze";
+  hardware = {
+    cpu.intel.updateMicrocode = lib.mkDefault true;
+    firmware = [
+      (pkgs.stdenvNoCC.mkDerivation {
+        dontUnpack = true;
+        installPhase = ''
+          mkdir -p $out/lib/firmware/brcm
+          tar -xf $src -C $out/lib/firmware/brcm
+        '';
+        name = "uhdair-brcm-firmware";
+        src = ./firmware.tar.gz;
+      })
+    ];
+  };
 }
