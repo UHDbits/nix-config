@@ -222,18 +222,19 @@ in
         top=$mount_dir
         root=$top/root
 
+        # Enumerate from the top level: -o only lists direct child subvolumes.
         # The prefix check must never allow deletion outside root.
         list_descendants() {
-          local target=$1 prefix=$2 line relative
-          btrfs subvolume list -o "$target" |
+          local prefix=$1 line relative
+          btrfs subvolume list "$top" |
             while IFS= read -r line; do
               case "$line" in
-                *" path "*) relative=''${line##* path } ;;
+                *" path "*) relative=''${line#* path } ;;
                 *) die "unrecognised btrfs subvolume output" ;;
               esac
               case "$relative" in
                 "$prefix"/*) printf '%s\n' "$relative" ;;
-                *) die "refusing descendant outside $prefix: $relative" ;;
+                *) continue ;;
               esac
             done
         }
@@ -241,7 +242,7 @@ in
         delete_tree() {
           local target=$1 prefix=$2 list relative
           list=$work_dir/delete-list
-          list_descendants "$target" "$prefix" >"$list"
+          list_descendants "$prefix" >"$list"
           btrfs property set "$target" ro false
           sort "$list" | while IFS= read -r relative; do
             [ -n "$relative" ] || continue
