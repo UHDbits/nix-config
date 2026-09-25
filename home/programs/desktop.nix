@@ -2,6 +2,7 @@
   inputs,
   lib,
   osConfig,
+  pkgs,
   ...
 }:
 {
@@ -10,6 +11,8 @@
     inputs.helium.homeModules.default
     inputs.noctalia.homeModules.default
   ];
+
+  home.packages = [ pkgs.gitte ];
 
   programs = {
     codexDesktopLinux.enable = true;
