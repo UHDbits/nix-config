@@ -6,7 +6,7 @@
   ];
 
   networking.hostName = "uhdflow";
-  desktop = "cosmic";
+  desktop = "niri";
   secureBoot.enable = false;
   storage = {
     bootDevice = "/dev/disk/by-label/EFI";
@@ -27,4 +27,13 @@
   };
 
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
+  boot.loader.limine.extraEntries = ''
+    /Bazzite
+      protocol: efi
+      path: boot():/EFI/fedora/shimx64.efi
+
+    /Windows
+      protocol: efi
+      path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+  '';
 }
