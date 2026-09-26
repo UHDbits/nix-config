@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./z13helper.nix
+  ];
 
   networking.hostName = "uhdflow";
   desktop = "cosmic";
