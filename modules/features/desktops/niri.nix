@@ -9,6 +9,7 @@
     environment.systemPackages = with pkgs; [
       ghostty
       nautilus
+      xwayland-satellite
     ];
 
     programs.niri.enable = true;
