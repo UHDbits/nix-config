@@ -9,7 +9,6 @@
   imports = [
     inputs.codex-desktop-linux.homeManagerModules.default
     inputs.helium.homeModules.default
-    inputs.noctalia.homeModules.default
   ];
 
   home.packages = [ pkgs.gitte ];
