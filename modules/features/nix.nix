@@ -32,4 +32,6 @@
     config.allowUnfree = true;
     overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
   };
+
+  programs.nix-ld.enable = true;
 }
