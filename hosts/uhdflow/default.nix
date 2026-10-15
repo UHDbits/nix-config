@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./audio.nix
     ./hardware.nix
     ./z13helper.nix
   ];
