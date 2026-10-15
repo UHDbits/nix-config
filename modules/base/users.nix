@@ -18,6 +18,7 @@
     users.uhdbits = {
       description = "Ashton A.";
       extraGroups = [
+        "kvm"
         "networkmanager"
         "wheel"
       ];

@@ -15,6 +15,10 @@
   };
 
   inputs = {
+    claude-desktop-extra = {
+      url = "github:patrickjaja/claude-desktop-extra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     codex-desktop-linux = {
       url = "github:ilysenko/codex-desktop-linux";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +67,8 @@
       };
     in
     {
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+
       nixosConfigurations = {
         uhdair = nixpkgs.lib.nixosSystem {
           inherit system specialArgs;

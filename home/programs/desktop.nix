@@ -12,7 +12,10 @@
     inputs.helium.homeModules.default
   ];
 
-  home.packages = [ pkgs.gitte ];
+  home.packages = [
+    inputs.claude-desktop-extra.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.gitte
+  ];
 
   wayland.windowManager.niri = lib.mkIf (osConfig.desktop == "niri") {
     enable = true;
