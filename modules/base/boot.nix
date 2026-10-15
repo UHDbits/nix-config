@@ -7,27 +7,30 @@ in
 
   config = lib.mkMerge [
     {
-      boot.initrd.verbose = false;
-      boot.kernelParams = [
-        "quiet"
-        "splash"
-        "udev.log_level=3"
-      ];
-      boot.loader = {
-        efi.canTouchEfiVariables = true;
-        limine = {
-          efiSupport = true;
-          enable = true;
-          enableEditor = false;
-          maxGenerations = 5;
-          secureBoot.enable = cfg.enable;
+      boot = {
+        initrd.verbose = false;
+        consoleLogLevel = 3;
+        kernelParams = [
+          "quiet"
+          "splash"
+          "udev.log_level=3"
+        ];
+        loader = {
+          efi.canTouchEfiVariables = true;
+          limine = {
+            efiSupport = true;
+            enable = true;
+            enableEditor = false;
+            maxGenerations = 5;
+            secureBoot.enable = cfg.enable;
+          };
+          systemd-boot.enable = false;
+          timeout = lib.mkDefault 10;
         };
-        systemd-boot.enable = false;
-        timeout = lib.mkDefault 10;
-      };
-      boot.plymouth = {
-        enable = true;
-        theme = "bgrt";
+        plymouth = {
+          enable = true;
+          theme = "bgrt";
+        };
       };
     }
     (lib.mkIf cfg.enable {

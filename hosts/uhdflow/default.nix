@@ -27,14 +27,16 @@
     zramSizeMiB = 0;
   };
 
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
-  boot.loader.limine.extraEntries = ''
-    /Bazzite
-      protocol: efi
-      path: boot():/EFI/fedora/shimx64.efi
+  boot = {
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
+    loader.limine.extraEntries = ''
+      /Bazzite
+        protocol: efi
+        path: boot():/EFI/fedora/shimx64.efi
 
-    /Windows
-      protocol: efi
-      path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
-  '';
+      /Windows
+        protocol: efi
+        path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+    '';
+  };
 }

@@ -84,29 +84,6 @@ in
       }
     ];
 
-    boot = {
-      initrd = {
-        luks.devices = mkIf luksEnabled {
-          "${cfg.luks.name}" = {
-            allowDiscards = cfg.luks.allowDiscards;
-            crypttabExtraOpts = optionals (cfg.luks.mode == "tpm2-pin") [
-              "tpm2-device=auto"
-              "tpm2-pin=yes"
-            ];
-            device = cfg.device;
-          };
-        };
-        supportedFilesystems = [ "btrfs" ];
-        systemd.enable = true;
-        systemd.initrdBin = [
-          pkgs.btrfs-progs
-          pkgs.coreutils
-          pkgs.util-linux.mount
-        ];
-        systemd.tpm2.enable = cfg.luks.mode == "tpm2-pin";
-      };
-    };
-
     fileSystems = {
       "/" = {
         device = btrfsDevice;
@@ -162,111 +139,135 @@ in
       hideMounts = true;
     };
 
-    systemd.tmpfiles.rules = [ "d /persist/secrets 0700 root root -" ];
     services.btrfs.autoScrub = {
       enable = true;
       fileSystems = [ "/" ];
     };
 
-    systemd.sleep.settings.Sleep = {
-      AllowHibernation = false;
-      AllowHybridSleep = false;
-      AllowSuspendThenHibernate = false;
+    systemd = {
+      tmpfiles.rules = [ "d /persist/secrets 0700 root root -" ];
+      sleep.settings.Sleep = {
+        AllowHibernation = false;
+        AllowHybridSleep = false;
+        AllowSuspendThenHibernate = false;
+      };
     };
 
-    boot.initrd.systemd.services.root-rotation = mkIf cfg.impermanence.enable {
-      after = [ btrfsDeviceUnit ] ++ optional luksEnabled cryptsetupUnit;
-      before = [ "sysroot.mount" ];
-      description = "Replace the root Btrfs subvolume";
-      environment = {
-        ROOT_ROTATION_DEVICE = btrfsDevice;
+    boot.initrd = {
+      luks.devices = mkIf luksEnabled {
+        "${cfg.luks.name}" = {
+          allowDiscards = cfg.luks.allowDiscards;
+          crypttabExtraOpts = optionals (cfg.luks.mode == "tpm2-pin") [
+            "tpm2-device=auto"
+            "tpm2-pin=yes"
+          ];
+          device = cfg.device;
+        };
       };
-      requiredBy = [ "sysroot.mount" ];
-      requires = [ btrfsDeviceUnit ] ++ optional luksEnabled cryptsetupUnit;
-      script = ''
-        # Replace the root Btrfs subvolume before it is mounted.
-        set -euo pipefail
+      supportedFilesystems = [ "btrfs" ];
+      systemd = {
+        enable = true;
+        initrdBin = [
+          pkgs.btrfs-progs
+          pkgs.coreutils
+          pkgs.util-linux.mount
+        ];
+        tpm2.enable = cfg.luks.mode == "tpm2-pin";
+        services.root-rotation = mkIf cfg.impermanence.enable {
+          after = [ btrfsDeviceUnit ] ++ optional luksEnabled cryptsetupUnit;
+          before = [ "sysroot.mount" ];
+          description = "Replace the root Btrfs subvolume";
+          environment = {
+            ROOT_ROTATION_DEVICE = btrfsDevice;
+          };
+          requiredBy = [ "sysroot.mount" ];
+          requires = [ btrfsDeviceUnit ] ++ optional luksEnabled cryptsetupUnit;
+          script = ''
+            # Replace the root Btrfs subvolume before it is mounted.
+            set -euo pipefail
 
-        device=''${ROOT_ROTATION_DEVICE:?ROOT_ROTATION_DEVICE is required}
-        mount_dir=''${ROOT_ROTATION_MOUNT:-/run/root-rotation}
-        work_dir=''${ROOT_ROTATION_WORK_DIR:-"$mount_dir.work"}
+            device=''${ROOT_ROTATION_DEVICE:?ROOT_ROTATION_DEVICE is required}
+            mount_dir=''${ROOT_ROTATION_MOUNT:-/run/root-rotation}
+            work_dir=''${ROOT_ROTATION_WORK_DIR:-"$mount_dir.work"}
 
-        die() {
-          echo "root-rotation: $*" >&2
-          exit 1
-        }
+            die() {
+              echo "root-rotation: $*" >&2
+              exit 1
+            }
 
-        if [ -r /proc/cmdline ]; then
-          cmdline=$(cat /proc/cmdline)
-          case " $cmdline " in
-            *' root-rotation=skip '*)
-              echo 'root-rotation: skipped for this boot'
-              exit 0
-              ;;
-          esac
-        fi
-
-        mounted=0
-        cleanup() {
-          [ "$mounted" -eq 0 ] || umount "$mount_dir" || true
-          rm -f "$work_dir/delete-list" "$work_dir/delete-list.sorted" 2>/dev/null || true
-          rmdir "$work_dir" 2>/dev/null || true
-          rmdir "$mount_dir" 2>/dev/null || true
-        }
-        trap cleanup EXIT
-
-        mkdir -p "$mount_dir"
-        mkdir "$work_dir"
-        mount -o subvolid=5 "$device" "$mount_dir"
-        mounted=1
-        top=$mount_dir
-        root=$top/root
-
-        # Enumerate from the top level: -o only lists direct child subvolumes.
-        # The prefix check must never allow deletion outside root.
-        list_descendants() {
-          local prefix=$1 line relative
-          btrfs subvolume list "$top" |
-            while IFS= read -r line; do
-              case "$line" in
-                *" path "*) relative=''${line#* path } ;;
-                *) die "unrecognised btrfs subvolume output" ;;
+            if [ -r /proc/cmdline ]; then
+              cmdline=$(cat /proc/cmdline)
+              case " $cmdline " in
+                *' root-rotation=skip '*)
+                  echo 'root-rotation: skipped for this boot'
+                  exit 0
+                  ;;
               esac
-              case "$relative" in
-                "$prefix"/*) printf '%s\n' "$relative" ;;
-                *) continue ;;
-              esac
-            done
-        }
+            fi
 
-        delete_tree() {
-          local target=$1 prefix=$2 list relative
-          list=$work_dir/delete-list
-          list_descendants "$prefix" >"$list"
-          btrfs property set "$target" ro false
-          sort "$list" | while IFS= read -r relative; do
-            [ -n "$relative" ] || continue
-            btrfs property set "$top/$relative" ro false
-          done
-          sort -r "$list" >"$list.sorted"
-          while IFS= read -r relative; do
-            [ -n "$relative" ] || continue
-            btrfs subvolume delete "$top/$relative"
-          done <"$list.sorted"
-          btrfs subvolume delete "$target"
-          rm -f "$list" "$list.sorted"
-        }
+            mounted=0
+            cleanup() {
+              [ "$mounted" -eq 0 ] || umount "$mount_dir" || true
+              rm -f "$work_dir/delete-list" "$work_dir/delete-list.sorted" 2>/dev/null || true
+              rmdir "$work_dir" 2>/dev/null || true
+              rmdir "$mount_dir" 2>/dev/null || true
+            }
+            trap cleanup EXIT
 
-        btrfs subvolume show "$root" >/dev/null || die 'root must be a Btrfs subvolume'
-        delete_tree "$root" root
-        btrfs subvolume create "$root"
-      '';
-      serviceConfig = {
-        # Later mount transactions must not rotate an already-mounted root again.
-        RemainAfterExit = true;
-        Type = "oneshot";
+            mkdir -p "$mount_dir"
+            mkdir "$work_dir"
+            mount -o subvolid=5 "$device" "$mount_dir"
+            mounted=1
+            top=$mount_dir
+            root=$top/root
+
+            # Enumerate from the top level: -o only lists direct child subvolumes.
+            # The prefix check must never allow deletion outside root.
+            list_descendants() {
+              local prefix=$1 line relative
+              btrfs subvolume list "$top" |
+                while IFS= read -r line; do
+                  case "$line" in
+                    *" path "*) relative=''${line#* path } ;;
+                    *) die "unrecognised btrfs subvolume output" ;;
+                  esac
+                  case "$relative" in
+                    "$prefix"/*) printf '%s\n' "$relative" ;;
+                    *) continue ;;
+                  esac
+                done
+            }
+
+            delete_tree() {
+              local target=$1 prefix=$2 list relative
+              list=$work_dir/delete-list
+              list_descendants "$prefix" >"$list"
+              btrfs property set "$target" ro false
+              sort "$list" | while IFS= read -r relative; do
+                [ -n "$relative" ] || continue
+                btrfs property set "$top/$relative" ro false
+              done
+              sort -r "$list" >"$list.sorted"
+              while IFS= read -r relative; do
+                [ -n "$relative" ] || continue
+                btrfs subvolume delete "$top/$relative"
+              done <"$list.sorted"
+              btrfs subvolume delete "$target"
+              rm -f "$list" "$list.sorted"
+            }
+
+            btrfs subvolume show "$root" >/dev/null || die 'root must be a Btrfs subvolume'
+            delete_tree "$root" root
+            btrfs subvolume create "$root"
+          '';
+          serviceConfig = {
+            # Later mount transactions must not rotate an already-mounted root again.
+            RemainAfterExit = true;
+            Type = "oneshot";
+          };
+          unitConfig.DefaultDependencies = "no";
+        };
       };
-      unitConfig.DefaultDependencies = "no";
     };
   };
 }

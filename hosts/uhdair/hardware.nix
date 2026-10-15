@@ -12,17 +12,19 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = [
-      "nvme"
-      "sd_mod"
-      "usb_storage"
-      "xhci_pci"
-    ];
-    initrd.kernelModules = [
-      "t2bce_audio"
-      "t2bce_core"
-      "t2bce_vhci"
-    ];
+    initrd = {
+      availableKernelModules = [
+        "nvme"
+        "sd_mod"
+        "usb_storage"
+        "xhci_pci"
+      ];
+      kernelModules = [
+        "t2bce_audio"
+        "t2bce_core"
+        "t2bce_vhci"
+      ];
+    };
     kernelParams = [
       "i915.enable_guc=2"
       "intel_iommu=on"

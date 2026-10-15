@@ -19,8 +19,10 @@ let
 in
 {
   services = {
-    pipewire.package = t2Pipewire;
-    pipewire.wireplumber.package = pkgs.wireplumber.override { pipewire = t2Pipewire; };
+    pipewire = {
+      package = t2Pipewire;
+      wireplumber.package = pkgs.wireplumber.override { pipewire = t2Pipewire; };
+    };
     udev.packages = [ audioUdevRules ];
   };
 }
