@@ -76,7 +76,8 @@ in
       # same sound card. USB, Bluetooth, HDMI and unknown ports use Bypass.
       "easyeffects/autoload/output/${speaker}:Speakers.json" = autoload speaker "Speakers" "IRZ13 Flow";
       "easyeffects/autoload/input/${microphone}:Internal Microphone.json" =
-        autoload microphone "Internal Microphone" "FlowMic";
+        autoload microphone "Internal Microphone"
+          "FlowMic";
     };
 
     systemd.user.services = {
