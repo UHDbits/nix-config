@@ -11,6 +11,8 @@
   ++ scanPaths ./.
   ++ scanPaths ../features;
 
+  environment.sessionVariables.SYSTEMD_LOG_LEVEL = "err";
+
   hardware.enableRedistributableFirmware = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
