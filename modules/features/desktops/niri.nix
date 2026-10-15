@@ -9,15 +9,16 @@
     environment.systemPackages = with pkgs; [
       ghostty
       nautilus
-      xwayland-satellite
     ];
 
     programs.niri.enable = true;
-    services.greetd = {
-      enable = true;
-      useTextGreeter = true;
-      settings.default_session.command =
-        "${lib.getExe pkgs.tuigreet} --time --cmd ${lib.getExe' config.programs.niri.package "niri-session"}";
+    services = {
+      displayManager.noctalia-greeter = {
+        enable = true;
+        settings.session.default = "niri";
+      };
+      # COSMIC's Orca screen reader needs speechd; Niri has no consumer.
+      speechd.enable = false;
     };
   };
 }
