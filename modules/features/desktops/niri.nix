@@ -13,6 +13,11 @@
     ];
 
     programs.niri.enable = true;
-    services.displayManager.gdm.enable = true;
+    services.greetd = {
+      enable = true;
+      useTextGreeter = true;
+      settings.default_session.command =
+        "${lib.getExe pkgs.tuigreet} --time --cmd ${lib.getExe' config.programs.niri.package "niri-session"}";
+    };
   };
 }
