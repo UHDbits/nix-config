@@ -9,8 +9,8 @@ in
     {
       boot = {
         bcache.enable = false;
-        initrd.verbose = false;
         consoleLogLevel = 3;
+        initrd.verbose = false;
         kernelParams = [
           "quiet"
           "splash"

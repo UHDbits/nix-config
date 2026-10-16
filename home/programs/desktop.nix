@@ -17,18 +17,6 @@
     pkgs.gitte
   ];
 
-  wayland.windowManager.niri = lib.mkIf (osConfig.desktop == "niri") {
-    enable = true;
-    enableDefaultConfig = true;
-    settings.output = {
-      _args = [ "eDP-1" ];
-      scale = 1.5;
-    };
-    extraConfig = ''
-      include optional=true "${config.xdg.configHome}/niri/noctalia.kdl"
-    '';
-  };
-
   programs = {
     codexDesktopLinux.enable = true;
     helium = {
@@ -45,6 +33,18 @@
         isDefault = true;
         settings = { };
       };
+    };
+  };
+
+  wayland.windowManager.niri = lib.mkIf (osConfig.desktop == "niri") {
+    enable = true;
+    enableDefaultConfig = true;
+    extraConfig = ''
+      include optional=true "${config.xdg.configHome}/niri/noctalia.kdl"
+    '';
+    settings.output = {
+      _args = [ "eDP-1" ];
+      scale = 1.5;
     };
   };
 }

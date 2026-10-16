@@ -4,6 +4,14 @@
 
   hardware.cpu.amd.ryzen-smu.enable = true;
 
+  home-manager.users.uhdbits = {
+    imports = [ inputs.z13helper.homeModules.default ];
+    programs.z13helper = {
+      enable = true;
+      systemd.enable = true;
+    };
+  };
+
   services.z13helperd = {
     enable = true;
     settings = {
@@ -14,13 +22,5 @@
       };
     };
     users = [ "uhdbits" ];
-  };
-
-  home-manager.users.uhdbits = {
-    imports = [ inputs.z13helper.homeModules.default ];
-    programs.z13helper = {
-      enable = true;
-      systemd.enable = true;
-    };
   };
 }

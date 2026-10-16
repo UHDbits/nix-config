@@ -12,23 +12,23 @@ in
   options.swap = {
     enable = mkEnableOption "the dedicated Btrfs swapfile";
     fileSizeMiB = mkOption {
-      type = types.ints.positive;
       default = 8192;
       description = "Swapfile size in MiB.";
+      type = types.ints.positive;
     };
     mode = mkOption {
+      default = "file";
+      description = "Use ordinary disk swap, zswap-backed disk swap, or zram in front of disk swap.";
       type = types.enum [
         "file"
         "zram+file"
         "zswap+file"
       ];
-      default = "file";
-      description = "Use ordinary disk swap, zswap-backed disk swap, or zram in front of disk swap.";
     };
     zramSizeMiB = mkOption {
-      type = types.ints.unsigned;
       default = 0;
       description = "Logical zram capacity in MiB.";
+      type = types.ints.unsigned;
     };
   };
 
@@ -39,6 +39,18 @@ in
         message = "swap.zramSizeMiB must be positive with zram+file.";
       }
     ];
+
+    boot.kernelParams =
+      if cfg.mode == "zswap+file" then
+        [
+          "zswap.compressor=zstd"
+          "zswap.enabled=1"
+          "zswap.max_pool_percent=10"
+        ]
+      else
+        [
+          "zswap.enabled=0"
+        ];
 
     swapDevices = [
       {
@@ -55,17 +67,5 @@ in
       memoryPercent = 100;
       priority = 5;
     };
-
-    boot.kernelParams =
-      if cfg.mode == "zswap+file" then
-        [
-          "zswap.compressor=zstd"
-          "zswap.enabled=1"
-          "zswap.max_pool_percent=10"
-        ]
-      else
-        [
-          "zswap.enabled=0"
-        ];
   };
 }

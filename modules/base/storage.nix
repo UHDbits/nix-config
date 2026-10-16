@@ -28,42 +28,42 @@ in
 {
   options.storage = {
     bootDevice = mkOption {
-      type = types.nullOr types.str;
       default = null;
-      example = "/dev/disk/by-partuuid/replace-me";
       description = "EFI system partition.";
+      example = "/dev/disk/by-partuuid/replace-me";
+      type = types.nullOr types.str;
     };
     device = mkOption {
-      type = types.nullOr types.str;
       default = null;
-      example = "/dev/disk/by-partuuid/replace-me";
       description = "Btrfs device, or the LUKS2 container when encryption is enabled.";
+      example = "/dev/disk/by-partuuid/replace-me";
+      type = types.nullOr types.str;
     };
     enable = mkEnableOption "the manually-created Btrfs storage layout";
     impermanence.enable = mkOption {
-      type = types.bool;
       default = true;
       description = "Replace the root subvolume on boot.";
+      type = types.bool;
     };
     luks = {
       allowDiscards = mkOption {
-        type = types.bool;
         default = true;
         description = "Pass Btrfs TRIM requests through dm-crypt to the SSD.";
+        type = types.bool;
       };
       mode = mkOption {
+        default = "none";
+        description = "LUKS2 unlock method; TPM2+PIN mode requires Secure Boot and still permits passphrase fallback.";
         type = types.enum [
           "none"
           "passphrase"
           "tpm2-pin"
         ];
-        default = "none";
-        description = "LUKS2 unlock method; TPM2+PIN mode requires Secure Boot and still permits passphrase fallback.";
       };
       name = mkOption {
-        type = types.str;
         default = "cryptroot";
         description = "dm-crypt mapping name.";
+        type = types.str;
       };
     };
   };
@@ -84,75 +84,6 @@ in
       }
     ];
 
-    fileSystems = {
-      "/" = {
-        device = btrfsDevice;
-        fsType = "btrfs";
-        options = btrfsOptions "root";
-      };
-      "/.swap" = {
-        device = btrfsDevice;
-        fsType = "btrfs";
-        options = [
-          "noatime"
-          "nodatacow"
-          "nodatasum"
-          "subvol=swap"
-        ];
-      };
-      "/boot" = {
-        device = cfg.bootDevice;
-        fsType = "vfat";
-        options = [ "umask=0077" ];
-      };
-      "/home" = {
-        device = btrfsDevice;
-        fsType = "btrfs";
-        options = btrfsOptions "home";
-      };
-      "/nix" = {
-        device = btrfsDevice;
-        fsType = "btrfs";
-        neededForBoot = true;
-        options = btrfsOptions "nix";
-      };
-      "/persist" = {
-        device = btrfsDevice;
-        fsType = "btrfs";
-        neededForBoot = true;
-        options = btrfsOptions "persist";
-      };
-    };
-
-    environment.persistence."/persist" = {
-      directories = [
-        "/var/lib/nixos"
-        "/var/lib/systemd"
-        "/var/log"
-      ];
-      enable = true;
-      files = [
-        "/etc/machine-id"
-        "/etc/ssh/ssh_host_ed25519_key"
-        "/etc/ssh/ssh_host_ed25519_key.pub"
-      ];
-      hideMounts = true;
-    };
-
-    services.btrfs.autoScrub = {
-      enable = true;
-      fileSystems = [ "/" ];
-    };
-
-    systemd = {
-      tmpfiles.rules = [ "d /persist/secrets 0700 root root -" ];
-      sleep.settings.Sleep = {
-        AllowHibernation = false;
-        AllowHybridSleep = false;
-        AllowSuspendThenHibernate = false;
-      };
-    };
-
     boot.initrd = {
       luks.devices = mkIf luksEnabled {
         "${cfg.luks.name}" = {
@@ -172,7 +103,6 @@ in
           pkgs.coreutils
           pkgs.util-linux.mount
         ];
-        tpm2.enable = cfg.luks.mode == "tpm2-pin";
         services.root-rotation = mkIf cfg.impermanence.enable {
           after = [ btrfsDeviceUnit ] ++ optional luksEnabled cryptsetupUnit;
           before = [ "sysroot.mount" ];
@@ -267,7 +197,77 @@ in
           };
           unitConfig.DefaultDependencies = "no";
         };
+        tpm2.enable = cfg.luks.mode == "tpm2-pin";
       };
+    };
+
+    environment.persistence."/persist" = {
+      directories = [
+        "/var/lib/nixos"
+        "/var/lib/systemd"
+        "/var/log"
+      ];
+      enable = true;
+      files = [
+        "/etc/machine-id"
+        "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key.pub"
+      ];
+      hideMounts = true;
+    };
+
+    fileSystems = {
+      "/" = {
+        device = btrfsDevice;
+        fsType = "btrfs";
+        options = btrfsOptions "root";
+      };
+      "/.swap" = {
+        device = btrfsDevice;
+        fsType = "btrfs";
+        options = [
+          "noatime"
+          "nodatacow"
+          "nodatasum"
+          "subvol=swap"
+        ];
+      };
+      "/boot" = {
+        device = cfg.bootDevice;
+        fsType = "vfat";
+        options = [ "umask=0077" ];
+      };
+      "/home" = {
+        device = btrfsDevice;
+        fsType = "btrfs";
+        options = btrfsOptions "home";
+      };
+      "/nix" = {
+        device = btrfsDevice;
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = btrfsOptions "nix";
+      };
+      "/persist" = {
+        device = btrfsDevice;
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = btrfsOptions "persist";
+      };
+    };
+
+    services.btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [ "/" ];
+    };
+
+    systemd = {
+      sleep.settings.Sleep = {
+        AllowHibernation = false;
+        AllowHybridSleep = false;
+        AllowSuspendThenHibernate = false;
+      };
+      tmpfiles.rules = [ "d /persist/secrets 0700 root root -" ];
     };
   };
 }

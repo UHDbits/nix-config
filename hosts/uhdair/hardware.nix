@@ -35,7 +35,6 @@
       "pm_async=off"
     ];
   };
-  systemd.sleep.settings.Sleep.SuspendState = "freeze";
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault true;
     firmware = [
@@ -50,4 +49,5 @@
       })
     ];
   };
+  systemd.sleep.settings.Sleep.SuspendState = "freeze";
 }

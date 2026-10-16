@@ -19,8 +19,8 @@
           appearance = {
             hide_logo = true;
             wallpaper = {
-              path = "${../../../assets/greeter-wallpaper.png}";
               fill_mode = "crop";
+              path = "${../../../assets/greeter-wallpaper.png}";
             };
           };
           session.default = "niri";
