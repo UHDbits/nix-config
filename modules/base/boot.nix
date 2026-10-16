@@ -24,6 +24,7 @@ in
             enableEditor = false;
             maxGenerations = 5;
             secureBoot.enable = cfg.enable;
+            style.wallpapers = [ ../../assets/wallpaper.jpg ];
           };
           systemd-boot.enable = false;
           timeout = lib.mkDefault 10;
