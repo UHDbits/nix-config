@@ -14,6 +14,7 @@
 
   home.packages = [
     inputs.claude-desktop-extra.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.cine
     pkgs.gitte
   ];
 
