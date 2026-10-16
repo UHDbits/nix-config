@@ -7,7 +7,6 @@
 {
   config = lib.mkIf (config.desktop == "niri") {
     environment.systemPackages = with pkgs; [
-      ghostty
       nautilus
     ];
 
