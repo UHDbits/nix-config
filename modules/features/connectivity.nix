@@ -22,6 +22,7 @@
       mode = "0755";
       user = "root";
     }
+    "/var/lib/power-profiles-daemon"
   ];
 
   hardware.bluetooth = {

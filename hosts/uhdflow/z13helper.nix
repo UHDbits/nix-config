@@ -2,6 +2,16 @@
 {
   imports = [ inputs.z13helper.nixosModules.default ];
 
+  # z13helperd restores the last applied profile from its state file at boot.
+  environment.persistence."/persist".directories = [
+    {
+      directory = "/var/lib/z13helper";
+      group = "z13helper";
+      mode = "0750";
+      user = "root";
+    }
+  ];
+
   hardware.cpu.amd.ryzen-smu.enable = true;
 
   home-manager.users.uhdbits = {
