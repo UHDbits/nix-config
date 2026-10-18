@@ -88,6 +88,8 @@ in
       luks.devices = mkIf luksEnabled {
         "${cfg.luks.name}" = {
           allowDiscards = cfg.luks.allowDiscards;
+          # dm-crypt's queues only add latency and wakeups on SSDs.
+          bypassWorkqueues = true;
           crypttabExtraOpts = optionals (cfg.luks.mode == "tpm2-pin") [
             "tpm2-device=auto"
             "tpm2-pin=yes"

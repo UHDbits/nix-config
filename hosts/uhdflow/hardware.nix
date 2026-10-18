@@ -14,7 +14,10 @@
       "usb_storage"
       "xhci_pci"
     ];
-    kernelParams = [ "amd_pstate=active" ];
+    kernelParams = [
+      "amd_pstate=active"
+      "nmi_watchdog=0"
+    ];
   };
   hardware = {
     amdgpu.initrd.enable = true;
