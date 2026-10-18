@@ -23,7 +23,7 @@
       url = "github:nix-community/impermanence";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.8.0";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     nix-index-database = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nix-index-database";
