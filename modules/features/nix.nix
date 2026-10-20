@@ -11,6 +11,7 @@
         "nix-command"
       ];
       flake-registry = "";
+      # Re-add it only with a newly published key: https://github.com/xddxdd/nix-cachyos-kernel/issues/110
       substituters = [
         "https://attic.xuyh0120.win/lantian"
         "https://nix-community.cachix.org"
