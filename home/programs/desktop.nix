@@ -17,6 +17,9 @@
     pkgs.cine
     pkgs.gitte
     pkgs.loupe
+  ]
+  ++ lib.optionals (osConfig.desktop == "niri") [
+    pkgs.adwaita-icon-theme
   ];
 
   programs = {
