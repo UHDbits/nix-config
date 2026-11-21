@@ -27,7 +27,10 @@
     settings = {
       batteryLimit = 100;
       lighting = {
-        keyboard.enable = false;
+        keyboard = {
+          mode = "static";
+          enable = false;
+        };
         lightbar.enable = false;
       };
     };

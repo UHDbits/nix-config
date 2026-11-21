@@ -3,6 +3,7 @@
   imports = [ inputs.nix-index-database.homeModules.default ];
 
   programs = {
+    claude-code.enable = true;
     fish.enable = true;
     gh.enable = true;
     git = {

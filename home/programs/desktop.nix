@@ -32,6 +32,10 @@
       enable = true;
       systemd.enable = true;
     };
+    t3code = {
+      enable = true;
+      package = pkgs.t3code.override { enableClaude = true; };
+    };
     thunderbird = {
       enable = true;
       profiles.default = {

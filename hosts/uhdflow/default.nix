@@ -3,6 +3,7 @@
   imports = [
     ./audio.nix
     ./hardware.nix
+    ./tablet.nix
     ./z13helper.nix
   ];
 

@@ -99,7 +99,6 @@ in
       };
       supportedFilesystems = [ "btrfs" ];
       systemd = {
-        enable = true;
         initrdBin = [
           pkgs.btrfs-progs
           pkgs.coreutils

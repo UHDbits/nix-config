@@ -4,21 +4,21 @@ result
 result-*
 
 # macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
+*.icloud
 ._*
+.apdisk
+.AppleDB
+.AppleDesktop
+.AppleDouble
+.com.apple.timemachine.donotpresent
 .DocumentRevisions-V100
+.DS_Store
 .fseventsd
+.LSOverride
 .Spotlight-V100
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-.AppleDB
-.AppleDesktop
+Icon
 Network Trash Folder
 Temporary Items
-.apdisk
-*.icloud
