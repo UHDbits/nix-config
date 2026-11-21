@@ -37,10 +37,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/NUR";
     };
-    t2fanrd = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:GnomedDev/T2FanRD";
-    };
     z13helper.url = "github:UHDbits/z13helper";
   };
 
@@ -69,18 +65,18 @@
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
 
       nixosConfigurations = {
-        uhdair = nixpkgs.lib.nixosSystem {
-          inherit specialArgs system;
-          modules = [
-            ./modules/base
-            ./hosts/uhdair
-          ];
-        };
         uhdflow = nixpkgs.lib.nixosSystem {
           inherit specialArgs system;
           modules = [
             ./modules/base
             ./hosts/uhdflow
+          ];
+        };
+        uhdprobook = nixpkgs.lib.nixosSystem {
+          inherit specialArgs system;
+          modules = [
+            ./modules/base
+            ./hosts/uhdprobook
           ];
         };
       };

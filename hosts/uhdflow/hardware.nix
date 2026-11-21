@@ -1,27 +1,17 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-gpu-amd
-    inputs.nixos-hardware.nixosModules.common-hidpi
     inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   boot = {
-    initrd.availableKernelModules = [
-      "nvme"
-      "sd_mod"
-      "usb_storage"
-      "xhci_pci"
-    ];
+    initrd.availableKernelModules = [ "usb_storage" ];
     kernelParams = [
       "amd_pstate=active"
       "nmi_watchdog=0"
     ];
   };
-  hardware = {
-    amdgpu.initrd.enable = true;
-    cpu.amd.updateMicrocode = lib.mkDefault true;
-    sensor.iio.enable = true;
-  };
+  hardware.sensor.iio.enable = true;
 }

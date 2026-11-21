@@ -47,9 +47,5 @@
     extraConfig = ''
       include optional=true "${config.xdg.configHome}/niri/noctalia.kdl"
     '';
-    settings.output = {
-      _args = [ "eDP-1" ];
-      scale = 1.5;
-    };
   };
 }

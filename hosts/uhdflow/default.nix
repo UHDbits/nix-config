@@ -19,6 +19,10 @@
     '';
   };
   desktop = "niri";
+  home-manager.users.uhdbits.wayland.windowManager.niri.settings.output = {
+    _args = [ "eDP-1" ];
+    scale = 1.5;
+  };
   networking.hostName = "uhdflow";
   secureBoot.enable = false;
   storage = {
