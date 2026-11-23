@@ -34,4 +34,12 @@
   };
 
   programs.nix-ld.enable = true;
+
+  # Channels are disabled, but the installer leaves root's channel profile
+  # behind, which makes Nix warn on every command. Remove the leftovers.
+  systemd.tmpfiles.rules = [
+    "R /nix/var/nix/profiles/per-user/root/channels - - - - -"
+    "R /nix/var/nix/profiles/per-user/root/channels-*-link - - - - -"
+    "R /root/.nix-defexpr/channels - - - - -"
+  ];
 }
