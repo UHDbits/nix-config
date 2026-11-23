@@ -14,6 +14,7 @@
           name = "Ashton A.";
         };
       };
+        # pins it, since the primary secret key is kept offline.
     };
     gpg.enable = true;
     nix-index.enable = true;
