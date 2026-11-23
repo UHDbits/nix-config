@@ -1,6 +1,19 @@
-{ lib, scanPaths, ... }:
+{
+  lib,
+  pkgs,
+  scanPaths,
+  ...
+}:
 {
   imports = scanPaths ./.;
+
+  config.fonts = {
+    packages = [
+      pkgs.adwaita-fonts
+      pkgs.inter
+    ];
+    fontconfig.defaultFonts.sansSerif = [ "Adwaita Sans" ];
+  };
 
   options.desktop = lib.mkOption {
     default = "cosmic";
