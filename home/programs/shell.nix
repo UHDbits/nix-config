@@ -14,7 +14,11 @@
           name = "Ashton A.";
         };
       };
-        # pins it, since the primary secret key is kept offline.
+      signing = {
+        format = "openpgp";
+        key = "6FF16354F61EC5C24AD17FBB77F2498613EE2059!";
+        signByDefault = true;
+      };
     };
     gpg.enable = true;
     nix-index.enable = true;
