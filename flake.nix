@@ -37,6 +37,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/NUR";
     };
+    wallpapers = {
+      flake = false;
+      url = "git+https://github.com/UHDbits/wallpapers?lfs=1";
+    };
     z13helper.url = "github:UHDbits/z13helper";
   };
 
