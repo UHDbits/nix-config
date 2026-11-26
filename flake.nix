@@ -19,6 +19,7 @@
       url = "github:nix-community/home-manager";
     };
     impermanence = {
+      inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/impermanence";
     };
@@ -33,13 +34,9 @@
       url = "github:NixOS/nixos-hardware";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/NUR";
-    };
     wallpapers = {
       flake = false;
-      url = "git+https://github.com/UHDbits/wallpapers?lfs=1";
+      url = "git+https://github.com/UHDbits/wallpapers.git?lfs=1";
     };
     z13helper.url = "github:UHDbits/z13helper";
   };
@@ -66,25 +63,23 @@
         inherit (lib) scanPaths;
       };
       system = "x86_64-linux";
+      hosts = [
+        "uhdflow"
+        "uhdprobook"
+      ];
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
 
-      nixosConfigurations = {
-        uhdflow = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = nixpkgs.lib.genAttrs hosts (
+        host:
+        nixpkgs.lib.nixosSystem {
           inherit specialArgs system;
           modules = [
             ./modules/base
-            ./hosts/uhdflow
+            ./hosts/${host}
           ];
-        };
-        uhdprobook = nixpkgs.lib.nixosSystem {
-          inherit specialArgs system;
-          modules = [
-            ./modules/base
-            ./hosts/uhdprobook
-          ];
-        };
-      };
+        }
+      );
     };
 }

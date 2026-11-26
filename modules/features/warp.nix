@@ -46,8 +46,12 @@ in
           pkgs.wgcf
         ];
         script = ''
+          set -euo pipefail
+
           if nmcli connection show '${warpName}' >/dev/null 2>&1; then
-            nmcli connection modify '${warpName}' connection.autoconnect no
+            if [ "$(nmcli -g connection.autoconnect connection show '${warpName}')" != "no" ]; then
+              nmcli connection modify '${warpName}' connection.autoconnect no
+            fi
             exit 0
           fi
 

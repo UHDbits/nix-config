@@ -35,6 +35,10 @@ in
   config = mkIf cfg.enable {
     assertions = [
       {
+        assertion = config.storage.enable;
+        message = "swap.enable requires storage.enable (for the /.swap mount).";
+      }
+      {
         assertion = cfg.mode != "zram+file" || cfg.zramSizeMiB > 0;
         message = "swap.zramSizeMiB must be positive with zram+file.";
       }
@@ -60,9 +64,9 @@ in
       }
     ];
 
-    zramSwap = {
+    zramSwap = mkIf (cfg.mode == "zram+file") {
       algorithm = "zstd";
-      enable = cfg.mode == "zram+file";
+      enable = true;
       memoryMax = cfg.zramSizeMiB * 1024 * 1024;
       memoryPercent = 100;
       priority = 5;

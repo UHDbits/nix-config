@@ -1,11 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, scanPaths, ... }:
 {
-  imports = [
-    ./audio.nix
-    ./hardware.nix
-    ./tablet.nix
-    ./z13helper.nix
-  ];
+  imports = scanPaths ./.;
 
   boot = {
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-zen4;
@@ -25,22 +20,16 @@
     scale = 1.5;
   };
   networking.hostName = "uhdflow";
-  secureBoot.enable = false;
   storage = {
     bootDevice = "/dev/disk/by-label/EFI";
     device = "/dev/disk/by-uuid/a22dde1c-56df-4aff-9945-4d3b82615287";
     enable = true;
-    impermanence.enable = true;
-    luks = {
-      mode = "passphrase";
-      name = "cryptroot";
-    };
+    luks.mode = "passphrase";
   };
   swap = {
     enable = true;
     fileSizeMiB = 16384;
     mode = "zswap+file";
-    zramSizeMiB = 0;
   };
   system.stateVersion = "26.11";
 }

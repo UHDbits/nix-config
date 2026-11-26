@@ -34,7 +34,8 @@
     description = "Recompute ACPI processor thermal frequency limits";
     script = ''
       # One Processor device recomputes the limit for every CPU in the package.
-      dev=$(grep -lx Processor /sys/class/thermal/cooling_device*/type | head -n 1)
+      dev=$(grep -lx Processor /sys/class/thermal/cooling_device*/type | head -n 1 || true)
+      [ -n "$dev" ] || exit 0
       dev=''${dev%/type}
       refresh() {
         read -r state < "$dev/cur_state"
@@ -46,7 +47,10 @@
         --object-path /org/freedesktop/UPower/PowerProfiles |
         while read -r _; do refresh; done
     '';
-    serviceConfig.Restart = "always";
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = "5s";
+    };
     wantedBy = [ "multi-user.target" ];
   };
 }

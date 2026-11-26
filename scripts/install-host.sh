@@ -11,12 +11,12 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-checkout=$(pwd -P)
+checkout=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)
 host=$1
 password_file=/mnt/persist/secrets/userpassword
 
-if [[ ! -f $checkout/flake.nix ]]; then
-  echo "run this script from the configuration checkout" >&2
+if [[ ! -d $checkout/hosts/$host ]]; then
+  echo "unknown host '$host' (expected a directory under $checkout/hosts)" >&2
   exit 1
 fi
 

@@ -1,4 +1,0 @@
-{ scanPaths, ... }:
-{
-  imports = scanPaths ./.;
-}

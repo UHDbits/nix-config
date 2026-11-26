@@ -76,27 +76,6 @@
         "type": "github"
       }
     },
-    "flake-parts_2": {
-      "inputs": {
-        "nixpkgs-lib": [
-          "nur",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1733312601,
-        "narHash": "sha256-4pDvzqnegAfRkPwO3wmwBhVi/Sye1mzps0zHWYnP88c=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "205b12d8b7cd4802fbcb8e8ef6a0f1408781a4f9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -191,30 +170,11 @@
         "type": "github"
       }
     },
-    "home-manager_2": {
-      "inputs": {
-        "nixpkgs": [
-          "impermanence",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1768598210,
-        "narHash": "sha256-kkgA32s/f4jaa4UG+2f8C225Qvclxnqs76mf8zvTVPg=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "c47b2cc64a629f8e075de52e4742de688f930dc6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "impermanence": {
       "inputs": {
-        "home-manager": "home-manager_2",
+        "home-manager": [
+          "home-manager"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -373,27 +333,6 @@
         "type": "github"
       }
     },
-    "nur": {
-      "inputs": {
-        "flake-parts": "flake-parts_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1795660245,
-        "narHash": "sha256-V7L+AnsUlCZHI/RqtOMIbhUYV77w9snQqMbjhw0+AHo=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "3946a358790abda1252575888dedf7eccfde1f96",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "claude-desktop-extra": "claude-desktop-extra",
@@ -406,7 +345,6 @@
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "nur": "nur",
         "wallpapers": "wallpapers",
         "z13helper": "z13helper"
       }
@@ -466,12 +404,12 @@
         "rev": "c9c1fc4706ef0e978325c7eaa7af0e75e251ef0b",
         "revCount": 3,
         "type": "git",
-        "url": "https://github.com/UHDbits/wallpapers"
+        "url": "https://github.com/UHDbits/wallpapers.git"
       },
       "original": {
         "lfs": true,
         "type": "git",
-        "url": "https://github.com/UHDbits/wallpapers"
+        "url": "https://github.com/UHDbits/wallpapers.git"
       }
     },
     "z13helper": {
