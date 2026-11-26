@@ -30,6 +30,7 @@ in
 
   home.packages = [
     inputs.claude-desktop-extra.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.antigravity-acp
     pkgs.cine
     pkgs.gitte
     pkgs.loupe
